@@ -1,0 +1,1 @@
+[06-Apr-2023 22:57:12 UTC] PHP Fatal error:  Allowed memory size of 536870912 bytes exhausted (tried to allocate 385878556 bytes) in /home2/darispace/hously.darispace.com/vendor/twig/twig/src/Compiler.php on line 121
