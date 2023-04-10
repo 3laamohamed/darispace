@@ -58,7 +58,7 @@ return [
                 'use_cdn' => false,
                 'location' => 'header',
                 'src' => [
-                    // 'local' => '/vendor/core/core/base/js/vue-app.js',
+                    'local' => '/vendor/core/core/base/js/vue-app.js',
                 ],
             ],
             'bootstrap' => [
@@ -66,7 +66,7 @@ return [
                 'location' => 'header',
                 'src' => [
                     'local' => [
-                        // '/vendor/core/core/base/libraries/bootstrap.bundle.min.js',
+                        '/vendor/core/core/base/libraries/bootstrap.bundle.min.js',
                     ],
                 ],
             ],
