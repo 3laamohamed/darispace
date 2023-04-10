@@ -21,6 +21,18 @@
                 {{ __('Rent') }}
             </button>
         </li>
+        <li role="presentation" class="inline-block">
+            <button @class(['w-full px-6 py-2 text-base font-medium transition-all duration-500 ease-in-out', 'rounded-md' => $style === 1, 'rounded-xl' => $style === 2, 'rounded-3xl' => $style === 4]) id="investor-tab" data-tabs-target="#investor" type="button" role="tab" aria-controls="investor" aria-selected="false">
+                {{ __('Investors') }}
+            </button>
+        </li>
+
+        <li role="presentation" class="inline-block">
+            <button @class(['w-full px-6 py-2 text-base font-medium transition-all duration-500 ease-in-out', 'rounded-md' => $style === 1, 'rounded-xl' => $style === 2, 'rounded-3xl' => $style === 4]) id="property-tab" data-tabs-target="#property" type="button" role="tab" aria-controls="property" aria-selected="false">
+                {{ __('Property') }}
+            </button>
+        </li>
+
     </ul>
 
     <div class="p-6 bg-white shadow-md search-filter dark:bg-slate-900 ltr:rounded-tl-none rtl:rounded-tr-none ltr:rounded-tr-none rtl:rounded-tl-none ltr:md:rounded-tr-xl rtl:md:rounded-tl-xl rounded-xl dark:shadow-gray-700">
@@ -36,6 +48,14 @@
 
         <div class="hidden" id="rent" role="tabpanel" aria-labelledby="rent-tab">
             {!! Theme::partial('filters.property', ['type' => 'rent', 'categories' => $categories]) !!}
+        </div>
+
+        <div class="hidden" id="investor" role="tabpanel" aria-labelledby="investor-tab">
+            {!! Theme::partial('real-estate.investors.search-box', ['id'=>'id','type' => \DB::table('re_investors')->get(), 'investors' => \DB::table('re_investors')->get()]) !!}
+        </div>
+
+        <div class="hidden" id="property" role="tabpanel" aria-labelledby="property-tab">
+            {!! Theme::partial('real-estate.properties.search-box', ['id'=>'id','categories'=>$categories,'type' => \DB::table('re_properties')->get(), 'properties' => \DB::table('re_properties')->get()]) !!}
         </div>
     </div>
 </div>

@@ -6,6 +6,7 @@ use Botble\RealEstate\Http\Controllers\Fronts\ReviewController;
 use Botble\RealEstate\Http\Controllers\InvoiceController;
 use Botble\RealEstate\Models\Account;
 use Botble\RealEstate\Models\Category;
+use Botble\RealEstate\Models\Investor;
 use Botble\RealEstate\Models\Project;
 use Botble\RealEstate\Models\Property;
 
@@ -200,6 +201,10 @@ Route::group(['namespace' => 'Botble\RealEstate\Http\Controllers', 'middleware' 
             Route::match(theme_option('projects_list_page_id') ? ['POST'] : ['POST', 'GET'], SlugHelper::getPrefix(Project::class, 'projects'), 'PublicController@getProjects')
                 ->name('public.projects');
 
+                Route::match(theme_option('investors_list_page_id') ? ['POST'] : ['POST', 'GET'], SlugHelper::getPrefix(Investor::class, 'investors'), 'PublicController@getInvestors')
+                ->name('public.investors');
+
+
             Route::match(theme_option('properties_list_page_id') ? ['POST'] : ['POST', 'GET'], SlugHelper::getPrefix(Property::class, 'properties'), 'PublicController@getProperties')
                 ->name('public.properties');
 
@@ -218,6 +223,8 @@ Route::group(['namespace' => 'Botble\RealEstate\Http\Controllers', 'middleware' 
 
             Route::get(SlugHelper::getPrefix(Account::class, 'agents'), 'PublicController@getAgents')->name('public.agents');
             Route::get(SlugHelper::getPrefix(Account::class, 'agents') . '/{username}', 'PublicController@getAgent')->name('public.agent');
+
+            Route::get(SlugHelper::getPrefix(Investor::class, 'investors') . '/{id}', 'PublicController@getInvestor')->name('public.investor');
 
             Route::post('send-consult', 'PublicController@postSendConsult')
                 ->name('public.send.consult');

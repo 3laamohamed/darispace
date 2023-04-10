@@ -1,1 +1,16 @@
-#map{height:300px}#infowindow-content{display:none}#infowindow-content .title{font-weight:700}#map #infowindow-content{display:inline}#target{width:345px}
+/* #map{height:300px}#infowindow-content{display:none}#infowindow-content .title{font-weight:700}#map #infowindow-content{display:inline}#target{width:345px} */
+            #map-canvas{
+            height: 500px;
+            width: 500px;
+            border: 3px solid black;
+            }
+
+            #search_input {
+            font-size: 18px;
+            width: 430px;
+            height: 40px;
+            margin: 5px;
+            padding: 5px;
+            box-sizing: border-box;
+            }
+
