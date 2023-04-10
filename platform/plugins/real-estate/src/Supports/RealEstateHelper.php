@@ -10,6 +10,7 @@ use Botble\RealEstate\Enums\ModerationStatusEnum;
 use Botble\RealEstate\Enums\ProjectStatusEnum;
 use Botble\RealEstate\Enums\PropertyStatusEnum;
 use Botble\RealEstate\Enums\ReviewStatusEnum;
+use Botble\RealEstate\Repositories\Interfaces\InvestorInterface;
 use Botble\RealEstate\Repositories\Interfaces\ProjectInterface;
 use Botble\RealEstate\Repositories\Interfaces\PropertyInterface;
 use Illuminate\Contracts\Database\Query\Builder;
@@ -174,6 +175,20 @@ class RealEstateHelper
         return $page ? $page->url : route('public.projects');
     }
 
+    public function getInvestorsListPageUrl(): ?string
+    {
+        $pageId = theme_option('investors_list_page_id');
+
+        if (! $pageId) {
+            return route('public.investors');
+        }
+
+        $page = $this->getPage($pageId);
+
+        return $page ? $page->url : route('public.investors');
+    }
+
+
     public function getPropertiesFilter(int|null $perPage = 12, array $extra = []): LengthAwarePaginator|Collection
     {
         $request = request();
@@ -214,6 +229,47 @@ class RealEstateHelper
         return app(PropertyInterface::class)->getProperties($filters, $params);
     }
 
+    public function getInvestorsFilter(int|null $perPage = 12, array $extra = []): LengthAwarePaginator|Collection
+    {
+        $request = request();
+
+        $perPage = $request->input('per_page') ?: ($perPage ?? 12);
+
+        $filters = $request->validate([
+            'keyword' => 'nullable|string|max:255',
+            // 'location' => 'nullable|string',
+            'city_id' => 'nullable|numeric',
+            'investor_id' => 'nullable|numeric',
+            'city' => 'nullable|string',
+            // 'category_id' => 'nullable|numeric',
+            'sort_by' => 'nullable|string',
+            // 'blocks' => 'nullable|numeric',
+            // 'min_floor' => 'nullable|numeric',
+            // 'max_floor' => 'nullable|numeric',
+            // 'min_flat' => 'nullable|numeric',
+            // 'max_flat' => 'nullable|numeric',
+            // 'locations' => 'nullable|array',
+            // 'category_ids' => 'nullable|array',
+        ]);
+
+        $filters['keyword'] = $request->input('keyword');
+        $filters['investor_id'] = $request->input('investor_id');
+        $filters['city'] = $request['location'];
+        $filters['city_id'] = $request['city_id'];
+
+        // dd($filters);
+        $params = array_merge([
+            'paginate' => [
+                'per_page' => (int)$perPage,
+                'current_paged' => (int)$request->input('page', 1),
+            ],
+            'order_by' => ['re_investors.created_at' => 'DESC'],
+            // 'with' => self::getProjectRelationsQuery(),
+        ], $extra);
+
+        return app(InvestorInterface::class)->getInvestors($filters, $params);
+    }
+
     public function getProjectsFilter(int|null $perPage = 12, array $extra = []): LengthAwarePaginator|Collection
     {
         $request = request();
@@ -252,6 +308,7 @@ class RealEstateHelper
 
         return app(ProjectInterface::class)->getProjects($filters, $params);
     }
+
 
     public function getPropertiesPerPageList(): array
     {

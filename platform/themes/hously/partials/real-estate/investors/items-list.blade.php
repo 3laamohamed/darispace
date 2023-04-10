@@ -3,7 +3,7 @@
     <div class="w-full mx-auto overflow-hidden duration-500 ease-in-out bg-white shadow investor-item group rounded-xl dark:bg-slate-900 hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-700 dark:hover:shadow-gray-700 lg:max-w-2xl">
         <div class="h-full md:flex">
                 <div class="relative overflow-hidden md:shrink-0">
-                    <a href="{{ url('/projects?investor_id='.$investor->id) }}">
+                    <a href="{{ route('public.investor',$investor->id) }}">
                         <img class="object-cover w-full h-full transition-all duration-500 md:w-48 hover:scale-110" src="{{ RvMedia::getImageUrl($investor->image, 'small', false, RvMedia::getDefaultImage()) }}" alt="{{ $investor->name }}">
                     </a>
                     <div class="absolute top-6 ltr:right-6 rtl:left-6">
@@ -23,12 +23,12 @@
                 <div class="p-6">
                     <div>
                         <div class="-ml-0.5 mb-2">
-                            <a href="{{ $investor->category->url }}" class="text-sm transition-all hover:text-primary">
+                            {{-- <a href="{{ $investor->category->url }}" class="text-sm transition-all hover:text-primary">
                                 <i class="mdi mdi-tag-outline"></i>
                                 {{ $investor->category->name }}
-                            </a>
+                            </a> --}}
                         </div>
-                        <a href="{{ url('/projects?investor_id='.$investor->id) }}" class="text-lg font-medium duration-500 ease-in-out hover:text-primary" title="{{ $investor->name }}">
+                        <a href="{{ route('public.investor',$investor->id) }}" class="text-lg font-medium duration-500 ease-in-out hover:text-primary" title="{{ $investor->name }}">
                             {{ $investor->name }}
                         </a>
                         {{-- @if($investor->city->name || $investor->state->name)
@@ -37,11 +37,11 @@
                             <p class="truncate text-slate-600 dark:text-slate-300">&nbsp;</p>
                         @endif --}}
                     </div>
-                    @if(RealEstateHelper::isEnabledReview())
+                    {{-- @if(RealEstateHelper::isEnabledReview())
                         <div class="mt-2">
                             @include(Theme::getThemeNamespace('views.real-estate.partials.review-star'), ['avgStar' => $investor->reviews_avg_star, 'count' => $investor->reviews_count])
                         </div>
-                    @endif
+                    @endif --}}
                 </div>
             </div>
         </div>

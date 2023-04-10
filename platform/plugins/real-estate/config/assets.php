@@ -33,15 +33,15 @@ return [
                 ],
             ],
             'vue-app' => [
-                'use_cdn' => false,
+                'use_cdn' => true,
                 'location' => 'header',
                 'src' => [
-                    'local' => '/vendor/core/core/base/js/vue-app.js',
+                    // 'local' => '/vendor/core/core/base/js/vue-app.js',
                 ],
             ],
             'bootstrap' => [
                 'use_cdn' => false,
-                'location' => 'header',
+                'location' => 'footer',
                 'src' => [
                     'local' => [
                         '/vendor/core/core/base/libraries/bootstrap.bundle.min.js',

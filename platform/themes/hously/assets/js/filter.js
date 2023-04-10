@@ -48,6 +48,7 @@ class ItemFilter {
 
         this.$itemElement
             .on('change', '#sort-by', () => {
+                // alert();
                 const value = this.$itemElement.find('#sort-by').val()
                 this.searchParams.set('sort_by', value)
                 this.refresh()

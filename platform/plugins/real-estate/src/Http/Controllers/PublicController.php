@@ -17,6 +17,7 @@ use Botble\RealEstate\Repositories\Interfaces\AccountInterface;
 use Botble\RealEstate\Repositories\Interfaces\CategoryInterface;
 use Botble\RealEstate\Repositories\Interfaces\ConsultInterface;
 use Botble\RealEstate\Repositories\Interfaces\CurrencyInterface;
+use Botble\RealEstate\Repositories\Interfaces\InvestorInterface;
 use Botble\RealEstate\Repositories\Interfaces\ProjectInterface;
 use Botble\RealEstate\Repositories\Interfaces\PropertyInterface;
 use Botble\SeoHelper\SeoOpenGraph;
@@ -231,6 +232,26 @@ class PublicController extends Controller
 
         return Theme::scope('real-estate.projects', compact('projects'))->render();
     }
+
+    public function getInvestors(Request $request, BaseHttpResponse $response)
+    {
+        SeoHelper::setTitle(__('Investors'));
+
+        $investors = RealEstateHelper::getInvestorsFilter((int)theme_option('number_of_investors_per_page') ?: 12, []);
+
+        if ($request->ajax()) {
+            if ($request->input('minimal')) {
+                return $response->setData(Theme::partial('search-suggestion', ['items' => $investors]));
+            }
+
+            return $response->setData(Theme::partial('real-estate.investors.items', compact('investors')));
+        }
+
+        $showMap = false;
+// dd($showMap);
+        return Theme::scope('real-estate.investors', compact('investors','showMap'))->render();
+    }
+
 
     public function getProperties(Request $request, BaseHttpResponse $response)
     {
@@ -518,6 +539,44 @@ class PublicController extends Controller
         $properties = $propertyRepository->advancedGet($params + RealEstateHelper::getReviewExtraData());
 
         return Theme::scope('real-estate.agent', compact('properties', 'account'))
+            ->render();
+    }
+
+    public function getInvestor(
+        int $id,
+        Request $request,
+        InvestorInterface $investorRepository,
+        ProjectInterface $projectRepository
+    ) {
+        $investor = $investorRepository->getFirstBy(['id' => $id]);
+
+        // dd($investor);
+        if (! $investor) {
+            abort(404);
+        }
+
+        SeoHelper::setTitle($investor->name);
+
+        Theme::breadcrumb()
+            ->add(__('Home'), route('public.index'))
+            ->add(SeoHelper::getTitle(), route('public.investor', $investor->id));
+
+        $params = [
+            'condition' => [
+                'investor_id' => $investor->id,
+                // 'author_type' => Investor::class,
+            ],
+            'paginate' => [
+                'per_page' => 12,
+                'current_paged' => (int)$request->input('page'),
+            ],
+            // 'with' => RealEstateHelper::getProjectRelationsQuery(),
+        ];
+
+        $projects = $projectRepository->advancedGet($params + []);
+
+        // dd($projects);
+        return Theme::scope('real-estate.investor', compact('projects', 'investor'))
             ->render();
     }
 }

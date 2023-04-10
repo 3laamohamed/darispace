@@ -1,26 +1,34 @@
-{{-- <form action="{{ $actionUrl ?? RealestateHelper::getInvestorsListPageUrl() }}" data-ajax-url="{{ $ajaxUrl ?? route('public.investors') }}" class="search-filter">
+<form action="{{ $actionUrl ?? RealestateHelper::getInvestorsListPageUrl() }}" data-ajax-url="{{ $ajaxUrl ?? route('public.investors') }}" class="search-filter">
     <div class="space-y-5 registration-form text-dark text-start">
         <div class="grid grid-cols-1 gap-6 md:grid-cols-3 lg:gap-0">
-            {!! Theme::partial('filters.keyword', compact('type')) !!}
+            {{-- {!! Theme::partial('filters.keyword', compact('type')) !!} --}}
 
-            {!! Theme::partial('filters.location', compact('type')) !!}
+            @php
 
-            {!! Theme::partial('filters.category', compact('id', 'type', 'categories')) !!}
+            $investors=\DB::table('re_investors')->get();
+            @endphp
+            {!! Theme::partial('filters.investor', compact('id', 'type', 'investors')) !!}
+
+            {{-- {!! Theme::partial('filters.location', compact('type')) !!} --}}
+            {!! Theme::partial('filters.city', compact('id','type')) !!}
+
+            {{-- {!! Theme::partial('filters.city', compact('id', 'type', 'categories')) !!} --}}
+            {{-- {!! Theme::partial('filters.category', compact('id', 'type', 'categories')) !!} --}}
         </div>
 
-        <button type="button" class="flex items-center gap-2 toggle-advanced-search text-secondary hover:text-primary">
+        {{-- <button type="button" class="flex items-center gap-2 toggle-advanced-search text-secondary hover:text-primary">
             {{ __('Advanced') }}
             <i class="mdi mdi-chevron-down-circle-outline"></i>
-        </button>
+        </button> --}}
 
         <div class="hidden space-y-5 transition-all duration-200 ease-in-out advanced-search">
-            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-0">
+            {{-- <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-0">
                 {!! Theme::partial('filters.block', compact('id', 'type')) !!}
 
                 {!! Theme::partial('filters.floor', compact('id', 'type')) !!}
 
                 {!! Theme::partial('filters.flat', compact('id', 'type')) !!}
-            </div>
+            </div> --}}
         </div>
 
         <div class="grid items-center grid-cols-3 gap-2 md:flex">
@@ -35,4 +43,4 @@
             </button>
         </div>
     </div>
-</form> --}}
+</form>
