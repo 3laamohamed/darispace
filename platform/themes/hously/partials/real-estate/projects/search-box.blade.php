@@ -1,7 +1,11 @@
-<form action="{{ $actionUrl ?? RealestateHelper::getProjectsListPageUrl() }}" data-ajax-url="{{ $ajaxUrl ?? route('public.projects') }}" class="search-filter">
+<form action="{{ $actionUrl ?? route('public.projects') }}" data-ajax-url="{{ $ajaxUrl ?? route('public.projects') }}" class="search-filter">
+    {{-- @php
+        dd( RealestateHelper::getProjectsListPageUrl());
+    @endphp --}}
     <div class="space-y-5 registration-form text-dark text-start">
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:gap-0">
-            {!! Theme::partial('filters.keyword', compact('type')) !!}
+            {{-- {!! Theme::partial('filters.keyword', compact('type')) !!} --}}
+            {!! Theme::partial('filters.projects', compact('id', 'type')) !!}
 
             {!! Theme::partial('filters.location', compact('type')) !!}
 

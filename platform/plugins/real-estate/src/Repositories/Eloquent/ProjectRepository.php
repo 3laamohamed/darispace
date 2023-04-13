@@ -68,7 +68,6 @@ class ProjectRepository extends RepositoriesAbstract implements ProjectInterface
         ], $params);
 
         $params['order_by'] = $orderBy;
-
         $this->model = $this->originalModel;
 
         if ($filters['keyword'] !== null) {
@@ -87,6 +86,10 @@ class ProjectRepository extends RepositoriesAbstract implements ProjectInterface
             $this->model = $this->model->whereHas('city', function ($query) use ($filters) {
                 $query->where('slug', $filters['city']);
             });
+        }
+
+        if (request()->project_id !== null) {
+            $this->model = $this->model->where('id',request()->project_id);
         }
 
         if ($filters['blocks']) {

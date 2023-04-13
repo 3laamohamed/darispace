@@ -25,7 +25,7 @@ class ThemeController extends BaseController
 {
     public function index()
     {
-        return 'alaa';
+        // return 'alaa';
         if (! config('packages.theme.general.display_theme_manager_in_admin_panel', true)) {
             abort(404);
         }

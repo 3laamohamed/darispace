@@ -52,7 +52,7 @@ class PublicController extends Controller
 
     public function getIndex()
     {
-        return 'alaa';
+        // return 'alaa';
         if (defined('PAGE_MODULE_SCREEN_NAME')) {
             $homepageId = BaseHelper::getHomepageId();
             if ($homepageId) {

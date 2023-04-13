@@ -95,6 +95,34 @@ class InvestorRepository extends RepositoriesAbstract implements InvestorInterfa
             $this->model = $this->model->where('id', $filters['investor_id']);
         }
 
+        // dd(request()->all());
+        if (request()->category_id) {
+            $this->model = $this->model->whereHas('projects',function($q) use ($filters){
+                $q->whereHas('categories', function (Builder $query) {
+                    $query->whereIn('category_id', request()->category_id);
+                });
+            });
+        }
+
+        if (request()->main_price) {
+            $this->model = $this->model->whereHas('projects',function($q) {
+                    $q->where('price_to', request()->main_price);
+            });
+        }
+
+        if (request()->deposit) {
+            $this->model = $this->model->whereHas('projects',function($q) {
+                    $q->where('deposit', request()->deposit);
+            });
+        }
+
+        if (request()->deliver_year) {
+            $this->model = $this->model->whereHas('projects',function($q) {
+                    $q->where('year_of_delivery', request()->deliver_year);
+            });
+        }
+
+
         // if ($filters['city'] !== null) {
         //     $this->model = $this->model->whereHas('city', function ($query) use ($filters) {
         //         $query->where('slug', $filters['city']);

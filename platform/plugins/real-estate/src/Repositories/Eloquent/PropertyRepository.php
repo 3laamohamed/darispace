@@ -121,6 +121,10 @@ class PropertyRepository extends RepositoriesAbstract implements PropertyInterfa
                 });
         }
 
+        if (request()->property_id !== null) {
+            $this->model = $this->model->where('id',request()->property_id);
+        }
+
         if ($filters['type'] !== null) {
             if ($filters['type'] == PropertyTypeEnum::SALE) {
                 $this->model = $this->model->where('re_properties.type', $filters['type']);

@@ -8,7 +8,11 @@ class PropertyObserver
 {
     public function retrieved(Property $property)
     {
-        if($property->created_at < now()->subDays($property->duration)){
+        if(isset($property->duration) && $property->created_at < now()->subDays($property->duration)){
+        // dd(now()->subDays($property->duration),$property->duration);
+
+            // $property->duration = now()->subDays($property->duration);
+            // $property->save();
             $property->delete();
         }
     }
@@ -20,7 +24,8 @@ class PropertyObserver
      */
     public function created(Property $property)
     {
-        //
+        $property->moderation_status='approved';
+        $property->save();
     }
 
     /**
