@@ -1,5 +1,11 @@
 {
     "Investor":"المطور",
+    "All Projects":"كل المشاريع",
+    "All Cities":"كل المدن",
+    "Select project:":"اختر المشروع",
+    "All projects":"كل المشاريع",
+    "Select property:":"اختر العقار",
+    "All properties":"كل العقارات",
     "Investors":"المطورين",
     "Property":"عقارات",
     "5":"5 ايام",
@@ -293,6 +299,7 @@
     "Post type": "نوع آخر",
     "Prev": "السابق",
     "Price": "سعر",
+    "Main Price": "السعر الأساسي",
     "Price (high to low)": "السعر الاعلى الى الادنى)",
     "Price (low to high)": "السعر من الارخص للاعلى)",
     "Price:": "سعر:",
@@ -480,5 +487,6 @@
     "total": "المجموع",
     "via": "عبر",
     "year_of_delivery": "سنة التسليم",
-    "© :year Your Company. All right reserved.": "©: العام شركتك. جميع الحقوق محفوظة."
+    "© :year Your Company. All right reserved.": "©: العام شركتك. جميع الحقوق محفوظة.",
+    "Select City:":"اختر المنطقة"
 }

@@ -197,6 +197,7 @@ class PublicAccountController extends Controller
             )->count() < $package->account_limit;
         });
 
+        // dd($packages);
         return $response->setData([
             'packages' => PackageResource::collection($packages),
             'account' => new AccountResource($account),

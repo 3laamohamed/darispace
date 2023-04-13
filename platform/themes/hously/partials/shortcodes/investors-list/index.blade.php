@@ -13,10 +13,10 @@
             'name' => __('List'),
             'icon' => 'mdi mdi-view-list-outline',
         ],
-        'map' => [
-            'name' => __('Map'),
-            'icon' => 'mdi mdi-map-marker',
-        ],
+        // 'map' => [
+        //     'name' => __('Map'),
+        //     'icon' => 'mdi mdi-map-marker',
+        // ],
     ];
 
 //    dd( Theme::asset()->container('footer')->usePath()->add('filter', 'js/filter.js'));

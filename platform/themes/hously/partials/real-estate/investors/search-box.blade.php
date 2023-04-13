@@ -6,6 +6,7 @@
             @php
 
             $investors=\DB::table('re_investors')->get();
+            // dd($id);
             @endphp
             {!! Theme::partial('filters.investor', compact('id', 'type', 'investors')) !!}
 
@@ -13,7 +14,32 @@
             {!! Theme::partial('filters.city', compact('id','type')) !!}
 
             {{-- {!! Theme::partial('filters.city', compact('id', 'type', 'categories')) !!} --}}
-            {{-- {!! Theme::partial('filters.category', compact('id', 'type', 'categories')) !!} --}}
+            {!! Theme::partial('filters.categories', compact('id', 'type', 'categories',)) !!}
+
+            <div>
+                <label for="main_price" class="font-medium form-label text-slate-900 dark:text-white">{{ __('Main Price') }}</label>
+                <div class="relative mt-2 filter-search-form filter-border">
+                    <i class="mdi mdi-currency-usd icons"></i>
+                    <input name="main_price" type="number" value="{{ request('main_price') }}" id="main_price" class="border-0 form-input filter-input-box bg-gray-50 dark:bg-slate-800" placeholder="{{ __('Main Price') }}">
+                </div>
+            </div>
+
+            <div>
+                <label for="deposit" class="font-medium form-label text-slate-900 dark:text-white">{{ __('deposit') }}</label>
+                <div class="relative mt-2 filter-search-form filter-border">
+                    <i class="mdi mdi-currency-usd icons"></i>
+                    <input name="deposit" type="number" id="deposit" value="{{ request('deposit') }}" class="border-0 form-input filter-input-box bg-gray-50 dark:bg-slate-800" placeholder="{{ __('deposit') }}">
+                </div>
+            </div>
+
+            <div>
+                <label for="deliver_year" class="font-medium form-label text-slate-900 dark:text-white">{{ __('year_of_delivery') }}</label>
+                <div class="relative mt-2 filter-search-form filter-border">
+                    <i class="mdi mdi-home-outline icons"></i>
+                    <input name="deliver_year" type="number" value="{{ request('deliver_year') }}" id="deliver_year" class="border-0 form-input filter-input-box bg-gray-50 dark:bg-slate-800" placeholder="{{ __('year_of_delivery') }}">
+                </div>
+            </div>
+
         </div>
 
         {{-- <button type="button" class="flex items-center gap-2 toggle-advanced-search text-secondary hover:text-primary">

@@ -2,12 +2,15 @@
     <input type="hidden" name="type" value="{{ $type }}">
     <div class="space-y-5 registration-form text-dark text-start">
         <div class="grid grid-cols-1 gap-6 md:grid-cols-3 lg:gap-0">
-            {!! Theme::partial('filters.keyword', compact('type')) !!}
+            {{-- {!! Theme::partial('filters.keyword', compact('type')) !!} --}}
+
+            {!! Theme::partial('filters.properties', compact('id', 'type')) !!}
 
             {!! Theme::partial('filters.location', compact('type')) !!}
 
             {!! Theme::partial('filters.type', compact('id', 'type')) !!}
         </div>
+
 
         <button type="button" class="flex items-center gap-2 toggle-advanced-search text-secondary hover:text-primary">
             {{ __('Advanced') }}
