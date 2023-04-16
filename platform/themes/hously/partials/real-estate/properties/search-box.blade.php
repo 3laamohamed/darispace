@@ -2,7 +2,7 @@
     <input type="hidden" name="type" value="{{ $type }}">
     <div class="space-y-5 registration-form text-dark text-start">
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-0">
-            {!! Theme::partial('filters.properties', compact('id', 'type')) !!}
+            {{-- {!! Theme::partial('filters.properties', compact('id', 'type')) !!} --}}
             {!! Theme::partial('filters.category', compact('id', 'type', 'categories')) !!}
 
             {{-- {!! Theme::partial('filters.keyword', compact('type')) !!} --}}
@@ -40,12 +40,12 @@
         </div>
 
         <div class="grid items-center grid-cols-3 gap-2 md:flex">
-            <button type="submit" class="col-span-2 btn bg-primary hover:bg-secondary border-primary hover:border-secondary text-white submit-btn w-full md:w-1/4 !h-12 rounded transition-all ease-in-out duration-200">
-                <i class="mdi mdi-magnify ltr:mr-2 rtl:ml-2"></i>
+            <button type="submit" class="col-span-1 btn bg-primary hover:bg-secondary border-primary hover:border-secondary text-white submit-btn w-full md:w-1/4 !h-12 rounded transition-all ease-in-out duration-200">
+                <i class="mdi mdi-magnify ltr:mr-1 rtl:ml-2"></i>
                 {{ __('Search') }}
             </button>
 
-            <button type="button" class="col-span-1 md:mt-0 block md:inline-block w-full md:w-fit px-4 bg-slate-500 rounded text-white py-[0.70rem] hover:bg-slate-600" id="reset-filtr">
+            <button type="button" class="col-span-2 md:mt-0 block md:inline-block w-full md:w-fit px-4 bg-slate-500 rounded text-white py-[0.70rem] hover:bg-slate-600" id="reset-filtr">
                 <i class="mr-1 mdi mdi-refresh"></i>
                 {{ __('Reset') }}
             </button>
