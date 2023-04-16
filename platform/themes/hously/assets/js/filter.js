@@ -59,6 +59,7 @@ class ItemFilter {
                 this.refresh()
             })
             .on('click', '#reset-filter', (e) => {
+                // alert();
                 e.preventDefault()
                 this.closeFilterDrawer()
 

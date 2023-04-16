@@ -7,6 +7,7 @@
             'recent' => get_recent_posts($limit),
             default => get_popular_posts($limit),
         };
+        // dd($posts);
     @endphp
     @if ($posts->count())
         <div class="p-6 bg-white rounded-lg shadow dark:bg-slate-800">

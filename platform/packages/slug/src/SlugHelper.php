@@ -122,12 +122,15 @@ class SlugHelper
             $condition['prefix'] = $prefix;
         }
 
+        // dd(app(SlugInterface::class)->getFirstBy($condition),$condition);
         return app(SlugInterface::class)->getFirstBy($condition);
     }
 
     public function getPrefix(string $model, string $default = '', bool $translate = true): ?string
     {
         $prefix = setting($this->getPermalinkSettingKey($model));
+        // dd($prefix);
+        // dd($prefix,$this->getPermalinkSettingKey($model));
 
         if (! $prefix) {
             $prefix = Arr::get(config('packages.slug.general.prefixes', []), $model);
@@ -141,6 +144,7 @@ class SlugHelper
             $default = $prefix;
         }
 
+        // dd($default);
         return $default;
     }
 

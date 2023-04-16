@@ -63,10 +63,11 @@
                 {{ __('Search') }}
             </button>
 
-            <button type="button" class="col-span-1 md:mt-0 block md:inline-block w-full md:w-fit px-4 bg-slate-500 rounded text-white py-[0.70rem] hover:bg-slate-600" id="reset-filter">
+            <button type="button" class="col-span-1 md:mt-0 block md:inline-block w-full md:w-fit px-4 bg-slate-500 rounded text-white py-[0.70rem] hover:bg-slate-600" id="reset-filtr">
                 <i class="mr-1 mdi mdi-refresh"></i>
                 {{ __('Reset') }}
             </button>
         </div>
     </div>
 </form>
+

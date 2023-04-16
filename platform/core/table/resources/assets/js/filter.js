@@ -41,6 +41,7 @@ class TableFilter {
         });
 
         $(document).on('click', '.btn-reset-filter-item', event => {
+            // alert();
             event.preventDefault();
             let _self = $(event.currentTarget);
             _self.closest('.filter-item').find('.filter-column-key').val('').trigger('change');

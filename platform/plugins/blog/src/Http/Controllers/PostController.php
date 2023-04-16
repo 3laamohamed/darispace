@@ -37,6 +37,7 @@ class PostController extends BaseController
 
     public function index(PostTable $dataTable)
     {
+        // dd('fgfg');
         page_title()->setTitle(trans('plugins/blog::posts.menu_name'));
 
         return $dataTable->renderTable();
