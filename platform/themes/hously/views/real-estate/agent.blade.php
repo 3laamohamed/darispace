@@ -20,9 +20,9 @@
                     <span>
                         @php($propertiesCount = $account->properties->count())
                         @if($propertiesCount === 1)
-                            {{ __(':count property', ['count' => number_format($propertiesCount)]) }}
+                            {{ __(':count property'). ' : '. number_format($propertiesCount) }}
                         @else
-                            {{ __(':count properties', ['count' => number_format($propertiesCount)]) }}
+                            {{ __(':count properties'). ' : '. number_format($propertiesCount) }}
                         @endif
                     </span>
                 </li>

@@ -43,6 +43,7 @@ abstract class AbstractWidget
 
     public function getConfig(): array
     {
+        // dd('grrg');
         return $this->config;
     }
 
@@ -52,6 +53,7 @@ abstract class AbstractWidget
      */
     public function run(): View|Factory|string|Application|null
     {
+        // dd('fgfg');
         $widgetGroup = app('botble.widget-group-collection');
         $widgetGroup->load();
         $widgetGroupData = $widgetGroup->getData();
@@ -68,6 +70,7 @@ abstract class AbstractWidget
             $this->config = array_merge($this->config, $data->data);
         }
 
+        // dd($this->isCore);
         if (! $this->isCore) {
             return Theme::loadPartial(
                 $this->frontendTemplate,

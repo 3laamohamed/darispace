@@ -14,12 +14,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use RvMedia;
 use Illuminate\Support\Str;
 
 class Property extends BaseModel
 {
+    use SoftDeletes;
     protected $table = 're_properties';
 
     protected $fillable = [

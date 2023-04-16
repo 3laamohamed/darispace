@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use Botble\RealEstate\Models\Property;
+use Carbon\Carbon;
 
 class PropertyObserver
 {
@@ -13,7 +14,10 @@ class PropertyObserver
 
             // $property->duration = now()->subDays($property->duration);
             // $property->save();
-            $property->delete();
+            // $property->delete();
+            $property->moderation_status='pending';
+            $property->save();
+
         }
     }
     /**
@@ -36,7 +40,15 @@ class PropertyObserver
      */
     public function updated(Property $property)
     {
-        //
+
+    }
+    public function updating(Property $property)
+    {
+        if($property->moderation_status != 'approved' && request()->moderation_status == 'approved'){
+            if(isset($property->duration) && $property->created_at < now()->subDays($property->duration)){
+                $property->created_at = Carbon::now();
+                }
+        }
     }
 
     /**

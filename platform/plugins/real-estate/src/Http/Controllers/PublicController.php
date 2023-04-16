@@ -103,6 +103,7 @@ class PublicController extends Controller
     {
         $slug = SlugHelper::getSlug($key, SlugHelper::getPrefix(Project::class));
 
+        // dd($slug,SlugHelper::getPrefix(Project::class));
         if (! $slug) {
             abort(404);
         }
@@ -163,7 +164,7 @@ class PublicController extends Controller
     public function getProperty(string $key, PropertyInterface $propertyRepository, Request $request, BaseHttpResponse $response)
     {
         $slug = SlugHelper::getSlug($key, SlugHelper::getPrefix(Property::class));
-
+        // dd($key);
         if (! $slug) {
             abort(404);
         }
