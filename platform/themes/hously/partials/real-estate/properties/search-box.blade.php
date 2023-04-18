@@ -10,7 +10,7 @@
 
             {{-- {!! Theme::partial('filters.location', compact('type')) !!} --}}
 
-            {!! Theme::partial('filters.city', compact('id','type')) !!}
+            {!! Theme::partial('filters.state', compact('id','type')) !!}
 
             {!! Theme::partial('filters.type', compact('id', 'type')) !!}
         </div>
@@ -23,7 +23,7 @@
 
         <div class="hidden space-y-5 transition-all duration-200 ease-in-out advanced-search">
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 lg:gap-0">
-                {!! Theme::partial('filters.category', compact('id', 'type', 'categories')) !!}
+                {{-- {!! Theme::partial('filters.category', compact('id', 'type', 'categories')) !!} --}}
 
                 {!! Theme::partial('filters.bedroom', compact('id', 'type')) !!}
 

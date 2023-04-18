@@ -40,14 +40,14 @@
                     @if($property->number_bedroom)
                         <li class="flex items-center ltr:mr-2 rtl:ml-2">
                             <i class="text-2xl text-primary mdi mdi-bed-empty ltr:mr-2 rtl:ml-2"></i>
-                            <span>{{ trans_choice(__('1 Bed|:number Beds'), $property->number_bedroom, ['number' => $property->number_bedroom]) }}</span>
+                            <span>{{ __(':number room(s)')}} {{ $property->number_bedroom > 1 ? $property->number_bedroom :'' }}</span>
                         </li>
                     @endif
 
                     @if($property->number_bathroom)
                         <li class="flex items-center ltr:mr-2 rtl:ml-2">
                             <i class="text-2xl text-primary mdi mdi-shower ltr:mr-2 rtl:ml-2"></i>
-                            <span>{{ trans_choice(__('1 Bath|:number Baths'), $property->number_bathroom, ['number' => $property->number_bathroom]) }}</span>
+                            <span>{{ __(':number Bath(s)')}} {{ $property->number_bathroom > 1 ? $property->number_bathroom :'' }}</span>
                         </li>
                     @endif
 

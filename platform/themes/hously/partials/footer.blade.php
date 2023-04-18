@@ -69,7 +69,8 @@
 
             $('div').on('click', '#reset-filtr', (e) => {
                 e.preventDefault()
-                location.reload();
+                window.location.href=location.protocol + '//' + location.host + location.pathname;
+                // location.reload();
             });
             // function resetForm() {
 

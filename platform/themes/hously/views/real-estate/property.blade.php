@@ -23,7 +23,7 @@
                        <p class="inline text-gray-500"><i class="mdi mdi-map-marker"></i>{{ $property->city->name }}{{ $property->city->name ? ', ' : '' }}{{ $property->state->name }}</p>
                     @endif
                     @if(setting('real_estate_display_views_count_in_detail_page', true))
-                        <p class="inline text-gray-500"><i class="px-1 mdi mdi-eye"></i>{{ __(':count views', ['count' => number_format($property->views)]) }}</p>
+                        <p class="inline text-gray-500"><i class="px-1 mdi mdi-eye"></i>{{ __(':count views') .' '. number_format($property->views) }}</p>
                     @endif
                    <p class="inline text-gray-500"><i class="px-1 mdi mdi-calendar"></i>{{ $property->created_at->translatedFormat('M d, Y')}}</p>
                     @if(RealEstateHelper::isEnabledReview())

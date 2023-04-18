@@ -17,11 +17,11 @@ use Illuminate\Support\HtmlString;
  */
 class PropertyDurationEnum extends Enum
 {
-    public const FIVE = '5';
+    public const FIVE = '1';
+    public const TWENTY = '2';
     public const SEVEN = '7';
     public const TEN = '10';
     public const FIFTEEN = '15';
-    public const TWENTY = '20';
 
 
     public static $langPath = 'plugins/real-estate::property.durations';
@@ -35,14 +35,15 @@ class PropertyDurationEnum extends Enum
                 ['class' => 'label-default duration-label']
             )
                 ->toHtml(),
+            self::TWENTY => Html::tag('span', self::TWENTY()->label(), ['class' => 'label-success duration-label'])
+                ->toHtml(),
             self::SEVEN => Html::tag('span', self::SEVEN()->label(), ['class' => 'label-success duration-label'])
                 ->toHtml(),
             self::TEN => Html::tag('span', self::TEN()->label(), ['class' => 'label-success duration-label'])
                 ->toHtml(),
             self::FIFTEEN => Html::tag('span', self::FIFTEEN()->label(), ['class' => 'label-danger duration-label'])
                 ->toHtml(),
-            self::TWENTY => Html::tag('span', self::TWENTY()->label(), ['class' => 'label-success duration-label'])
-                ->toHtml(),
+
             default => null,
         };
     }
