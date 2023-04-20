@@ -19,6 +19,12 @@
                             </div>
                         </div>
                     @endif
+                    <div class="absolute top-6 ltr:left-6 rtl:right-6" style="right: 72px !important;">
+                        <div class="flex items-center justify-center content-center p-2 pt-2.5 bg-gray-700 rounded-md bg-opacity-60 text-white text-sm">
+                            <i class="leading-none px-1 mdi mdi-eye ltr:mr-1 rtl:ml-1"></i>
+                            <span class="leading-none">{{ $property->views }}</span>
+                        </div>
+                    </div>
                     <div class="absolute bottom-0 flex text-sm md:hidden ltr:left-0 rtl:right-0 item-info-wrap">
                         <span class="flex items-center py-1 pl-6 pr-4 text-white">{{ $property->category->name }}</span>
                         {!! $property->status->toHtml() !!}

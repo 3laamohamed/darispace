@@ -329,7 +329,7 @@ class TranslationController extends BaseController
             }
 
             if ($locale != 'en') {
-                $defaultEnglishFile = theme_path(Theme::getThemeName() . '/lang/en.json');
+                $defaultEnglishFile = theme_path(Theme::getThemeName() . '/lang/ar.json');
 
                 if ($defaultEnglishFile) {
                     $enTranslations = BaseHelper::getFileData($defaultEnglishFile);
