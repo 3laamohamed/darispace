@@ -109,7 +109,7 @@ class LoginController extends Controller
 
     public function username()
     {
-        return filter_var(request()->input('username'), FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        return filter_var(request()->input('username'), FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
     }
 
     public function logout(Request $request)

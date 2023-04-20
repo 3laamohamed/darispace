@@ -46,6 +46,7 @@ class Account extends BaseModel implements
     protected $fillable = [
         'first_name',
         'last_name',
+        'type',
         'username',
         'email',
         'password',

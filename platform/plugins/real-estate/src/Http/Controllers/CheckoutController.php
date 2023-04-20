@@ -15,6 +15,7 @@ class CheckoutController extends Controller
     public function postCheckout(CheckoutRequest $request, BaseHttpResponse $response)
     {
         $returnUrl = $request->input('return_url');
+        // dd($returnUrl);
 
         $currency = $request->input('currency', config('plugins.payment.payment.currency'));
         $currency = strtoupper($currency);
@@ -56,6 +57,7 @@ class CheckoutController extends Controller
         }
 
         if ($checkoutUrl = Arr::get($data, 'checkoutUrl')) {
+            // dd($checkoutUrl);
             return $response
                 ->setError($data['error'])
                 ->setNextUrl($checkoutUrl)

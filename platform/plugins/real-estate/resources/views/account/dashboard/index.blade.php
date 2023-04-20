@@ -18,6 +18,9 @@
               </div>
               <div class="f4 b">{{ $user->name }}</div>
               <div class="f6 mb3 light-gray-text">
+                <i class="fas fa-id-card mr2"></i>{{ __($user->type) }}
+              </div>
+              <div class="f6 mb3 light-gray-text">
                 <i class="fas fa-envelope mr2"></i><a href="mailto:{{ $user->email }}" class="gray-text">{{ $user->email }}</a>
               </div>
               <div class="mb3">

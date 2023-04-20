@@ -60,6 +60,8 @@ class AuthenticationController extends Controller
             'first_name',
             'last_name',
             'name',
+            'type',
+            'username',
             'email',
             'phone',
             'password',
@@ -101,6 +103,9 @@ class AuthenticationController extends Controller
     {
         if (Auth::guard(ApiHelper::guard())->attempt([
             'email' => $request->input('email'),
+            'password' => $request->input('password'),
+        ]) || Auth::guard(ApiHelper::guard())->attempt([
+            'phone' => $request->input('email'),
             'password' => $request->input('password'),
         ])) {
             $token = $request->user(ApiHelper::guard())->createToken($request->input('token_name', 'Personal Access Token'));

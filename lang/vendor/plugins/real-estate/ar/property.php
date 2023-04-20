@@ -55,7 +55,7 @@ return [
         'rejected' => 'Rejected',
     ],
     'renew_notice' => 'Renew automatically (you will be charged again in :days days)?',
-    'distance_key' => 'مفتاح المسافة بين المرافق',
+    'distance_key' => 'المرافق المميزة بجوار العقار',
     'never_expired' => 'Never expired?',
     'select_project' => 'Select a project...',
     'account' => 'Account',

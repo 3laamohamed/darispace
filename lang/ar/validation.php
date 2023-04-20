@@ -133,4 +133,11 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
+
+    'attributes' => [
+        'phone' => 'الهاتف',
+        'email' => 'البريد الالكترونى',
+        'password' => 'كلمة المرور',
+        'username' => 'اسم المستخدم'
+    ],
 ];

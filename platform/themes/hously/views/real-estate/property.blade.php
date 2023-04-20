@@ -201,6 +201,7 @@
                                     </div>
                                     <div class="col-span-3 space-y-2">
                                         <p class="font-bold leading-normal break-all">{{ $author->name }}</p>
+                                        <p class="leading-none break-all">{{ __($author->type) }}</p>
                                         <p class="leading-normal break-all text-secondary">
                                             @if(setting('real_estate_hide_agency_phone', 0))
                                                 <span dir="ltr">{{ Str::mask($author->phone, '*', 3, -3) }}</span>
