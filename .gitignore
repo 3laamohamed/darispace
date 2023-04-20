@@ -3,6 +3,7 @@
 /public/storage
 /storage/*.key
 /vendor
+/*.zip
 .DS_Store
 Thumbs.db
 /bower_components
