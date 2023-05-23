@@ -226,6 +226,7 @@ class RealEstateHelper
             'with' => RealEstateHelper::getPropertyRelationsQuery(),
         ], $extra);
 
+        // dd(app(PropertyInterface::class)->getProperties([], []));
         return app(PropertyInterface::class)->getProperties($filters, $params);
     }
 

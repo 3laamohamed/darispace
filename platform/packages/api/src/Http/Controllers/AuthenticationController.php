@@ -111,7 +111,10 @@ class AuthenticationController extends Controller
             $token = $request->user(ApiHelper::guard())->createToken($request->input('token_name', 'Personal Access Token'));
 
             return $response
-                ->setData(['token' => $token->plainTextToken]);
+                ->setData([
+                    'token' => $token->plainTextToken,
+                    'user' => Auth::guard(ApiHelper::guard())->user(),
+            ]);
         }
 
         return $response
@@ -136,5 +139,17 @@ class AuthenticationController extends Controller
 
         return $response
             ->setMessage(__('You have been successfully logged out!'));
+    }
+
+    public function deleteAccount(Request $request, BaseHttpResponse $response)
+    {
+        if (! $request->user()) {
+            abort(401);
+        }
+
+        $request->user()->delete();
+
+        return $response
+            ->setMessage(__('You have been successfully Delete Account!'));
     }
 }

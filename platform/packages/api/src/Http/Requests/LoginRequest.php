@@ -12,5 +12,6 @@ class LoginRequest extends Request
             'email' => 'required|string',
             'password' => 'required|string',
         ];
+        
     }
 }

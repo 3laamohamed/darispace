@@ -64,11 +64,14 @@ class AccountPropertyController extends Controller
         AccountInterface $accountRepository,
         StorePropertyCategoryService $propertyCategoryService,
         SaveFacilitiesService $saveFacilitiesService
-    ) {
+    )
+    {
         if (! auth('account')->user()->canPost()) {
             return back()->with(['error_msg' => trans('plugins/real-estate::package.add_credit_alert')]);
         }
 
+        // dd($request->all());
+        // return response()->json($request->all());
         $property = $this->propertyRepository->getModel();
 
         $property->fill(array_merge($this->processRequestData($request), [

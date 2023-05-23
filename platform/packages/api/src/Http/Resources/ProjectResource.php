@@ -35,11 +35,20 @@ class ProjectResource extends JsonResource
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
             'period' => $this->period,
+            'status' => $this->status,
             'status_html' => $this->status_html,
             'category_name' => $this->category_name,
             'investor_id' => $this->investor_id,
+            'views' => $this->views,
+            'deposit' => $this->deposit,
+            'max_space' => $this->max_space,
+            'min_space' => $this->min_space,
+            'installment_years' => $this->installment_years,
             'map_icon' => $this->map_icon,
+            'created_at' => $this->created_at,
+            'categories' => $this->categories,
             'reviews' => $this->reviews,
+            'investor' => $this->investor,
         ];
     }
 }

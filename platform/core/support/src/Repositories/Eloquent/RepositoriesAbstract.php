@@ -319,10 +319,12 @@ abstract class RepositoriesAbstract implements RepositoryInterface
             'withAvg' => [],
         ], $params);
 
+        // dd($params['condition']);
         $this->applyConditions($params['condition']);
 
         $data = $this->model;
 
+        // dd($data->get());
         if ($params['select']) {
             $data = $data->select($params['select']);
         }
