@@ -86,13 +86,14 @@ class ProfileController extends Controller
         $userId = $request->user()->id;
 
         $validator = Validator::make($request->input(), [
-            'first_name' => 'required|max:120|min:2',
-            'last_name' => 'required|max:120|min:2',
-            'phone' => 'required|max:15|min:8',
-            'dob' => 'required|max:15|min:8',
+            'first_name' => 'nullable|max:120|min:2',
+            'last_name' => 'nullable|max:120|min:2',
+            'phone' => 'nullable|max:15|min:8',
+            'dob' => 'nullable|max:15|min:8',
             'gender' => 'nullable',
             'description' => 'nullable',
             'email' => 'nullable|max:60|min:6|email|unique:' . ApiHelper::getTable() . ',email,' . $userId,
+            'username' => 'nullable|max:60|min:6|unique:' . ApiHelper::getTable() . ',username,' . $userId,
         ]);
 
         if ($validator->fails()) {

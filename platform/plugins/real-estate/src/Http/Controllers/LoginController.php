@@ -54,11 +54,13 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+        // $request->email="+2".$request->email;
         if (! RealEstateHelper::isRegisterEnabled()) {
             abort(404);
         }
 
-        $request->merge([$this->username() => $request->input('email')]);
+        $request->merge([$this->username() => '+2'.$request->input('email')]);
+        // dd($request->all());
 
         $this->validateLogin($request);
 
@@ -85,6 +87,7 @@ class LoginController extends Controller
 
     protected function attemptLogin(Request $request)
     {
+        // dd('gggggggg');
         if ($this->guard()->validate($this->credentials($request))) {
             $account = $this->guard()->getLastAttempted();
 
@@ -109,6 +112,7 @@ class LoginController extends Controller
 
     public function username()
     {
+        // dd(request()->all());
         return filter_var(request()->input('username'), FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
     }
 

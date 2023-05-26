@@ -93,11 +93,27 @@ class PackageController extends Controller
             abort(403);
         }
 
-        // if ((float)$package->price) {
-        //     session(['subscribed_packaged_id' => $package->id]);
+        if ((float)$package->price) {
 
-        //     return $response->setData(['next_page' => route('public.account.package.subscribe', $package->id)]);
-        // }
+            $paymentDetails=[];
+            $paymentDetails['bank']=[
+                'name'=>setting('payment_bank_transfer_name', \Botble\Payment\Enums\PaymentMethodEnum::BANK_TRANSFER()->label()),
+                'status'=>setting('payment_bank_transfer_status'),
+                'description'=>setting('payment_bank_transfer_description'),
+            ];
+            $paymentDetails['cod']=[
+                'name'=>setting('payment_cod_name', \Botble\Payment\Enums\PaymentMethodEnum::COD()->label()),
+                'status'=>setting('payment_cod_status'),
+                'description'=>setting('payment_cod_description'),
+            ];
+            return $response->setData(['paymentDetails' => $paymentDetails])
+            ->setMessage(__("This is paid Package please pay and call Admin to activate it"))
+            ->setAdditional(['credits'=>$account->credits]);
+
+            // session(['subscribed_packaged_id' => $package->id]);
+
+            // return $response->setData(['next_page' => route('public.account.package.subscribe', $package->id)]);
+        }
 
         $this->savePayment($package, null, $transactionRepository, true);
 

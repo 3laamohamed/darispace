@@ -71,16 +71,24 @@
 
 
                         <div class="grid grid-cols-2 gap-2">
-                            <div class="mb-4">
-                                <label class="font-medium" for="phone">{{ __('Phone:') }}</label>
-                                <input id="phone" name="phone" type="text" @class(['form-control form-input dark:bg-slate-800 mt-1', 'is-invalid' => $errors->has('phone')]) placeholder="{{ __('Phone') }}">
-                                @error('phone')
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                            <div class="grid grid-cols-1">
+                            <div class="flex justify-between mb-4">
+                                <div class="mb-0" style="    width: 62%;margin-left: 0px;">
+                                    <label class="font-medium" for="country_code">{{  __('كود الدولة')}}</label>
+                                    <input id="country_code" name="country_code" value="+20" type="text" @class(['form-control form-input dark:bg-slate-800 mt-1', 'is-invalid' => $errors->has('country_code')]) disabled>
 
+                                </div>
+                                <div class="mb-0" style="padding-right: 8px">
+                                    <label class="font-medium" for="phone">{{ __('Phone:') }}</label>
+                                    <input id="phone" name="phone" type="text" @class(['form-control form-input dark:bg-slate-800 mt-1', 'is-invalid' => $errors->has('phone')]) placeholder="{{ __('01021690242') }}">
+                                    @error('phone')
+                                        <span class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            </div>
                             <div class="mb-4">
                                 <label class="font-medium" for="type">{{ __('Type:') }}</label>
                                 <select id="type" name="type" @class(['form-control form-input dark:bg-slate-800 mt-1', 'is-invalid' => $errors->has('type')])>

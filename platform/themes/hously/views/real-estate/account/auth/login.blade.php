@@ -24,7 +24,23 @@
                 <form class="ltr:text-left rtl:text-right" action="{{ route('public.account.login') }}" method="post">
                     @csrf
                     <div class="grid grid-cols-1">
-                        <div class="mb-4">
+                        <div class="flex justify-between mb-4">
+                            <div class="mb-0" style="    width: 35%;margin-left: 5px;">
+                                <label class="font-medium" for="country_code">{{  __('كود الدولة')}}</label>
+                                <input id="country_code" name="country_code" value="+20" type="text" @class(['form-control form-input dark:bg-slate-800 mt-1', 'is-invalid' => $errors->has('country_code')]) disabled>
+
+                            </div>
+                            <div class="mb-0" style="padding-right: 10px">
+                                <label class="font-medium" for="email">{{  __('Phone') . ' / ' .__('Email Address:')}}</label>
+                                <input id="email" name="email" type="email" @class(['form-control form-input dark:bg-slate-800 mt-1', 'is-invalid' => $errors->has('email')]) placeholder="{{ __('01021690242') }}">
+                                @error('email')
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        {{-- <div class="mb-4">
                             <label class="font-medium" for="email">{{  __('Phone') . ' / ' .__('Email Address:')}}</label>
                             <input id="email" name="email" type="email" @class(['form-control form-input dark:bg-slate-800 mt-1', 'is-invalid' => $errors->has('email')]) placeholder="{{ __('name@example.com') }}">
                             @error('email')
@@ -32,7 +48,7 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
+                        </div> --}}
 
                         <div class="mb-4">
                             <label class="font-medium" for="password">{{ __('Password:') }}</label>

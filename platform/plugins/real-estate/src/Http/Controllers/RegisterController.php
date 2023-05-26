@@ -110,7 +110,10 @@ class RegisterController extends Controller
 
         $this->validator($request->input())->validate();
 
-        event(new Registered($account = $this->create($request->input())));
+        $request_data=$request->except('phone','country_code');
+        $request_data['phone']='+2'.$request->phone;
+        // dd($request_data);
+        event(new Registered($account = $this->create($request_data)));
 
         EmailHandler::setModule(REAL_ESTATE_MODULE_SCREEN_NAME)
             ->setVariableValues([

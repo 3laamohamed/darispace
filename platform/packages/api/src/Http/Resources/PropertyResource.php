@@ -49,9 +49,10 @@ class PropertyResource extends JsonResource
             'created_at' => $this->created_at,
             'reviews' => $this->reviews,
             'categories' => $this->categories,
-            'content' => $this->content,
+            // 'content' => $this->content,
             'facilities' => $this->facilities,
             'features' => $this->features,
+            'author' => $this->author,
         ];
     }
 }

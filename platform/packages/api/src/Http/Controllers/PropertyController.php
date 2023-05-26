@@ -299,7 +299,7 @@ class PropertyController extends Controller
                 \File::copy($oldPath , $newPath);
                 $newPath = $imagePath.'/'.$time.'.'.$ext;
                 \File::copy($oldPath , $newPath);
-                
+
                 $image=MediaFile::create([
                     'user_id'=>auth()->user()->id,
                     'name'=>$imageName,
@@ -341,6 +341,12 @@ class PropertyController extends Controller
     {
         try {
             $property = $this->propertyRepository->findOrFail($id);
+
+            if($property->expire_date <= \Carbon::now()){
+                return $response
+                ->setError()
+                ->setMessage(__('You Can\'t Delete this Property Before Expire Date' ));
+            }
             $property->features()->detach();
             $this->propertyRepository->delete($property);
 

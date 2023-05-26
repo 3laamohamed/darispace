@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Botble\Base\Http\Responses\BaseHttpResponse;
 use Botble\Api\Http\Requests\LoginRequest;
 use Botble\Api\Http\Requests\RegisterRequest;
+use Botble\Api\Http\Resources\UserResource;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -113,7 +114,7 @@ class AuthenticationController extends Controller
             return $response
                 ->setData([
                     'token' => $token->plainTextToken,
-                    'user' => Auth::guard(ApiHelper::guard())->user(),
+                    'user' => new UserResource(Auth::guard(ApiHelper::guard())->user()),
             ]);
         }
 
