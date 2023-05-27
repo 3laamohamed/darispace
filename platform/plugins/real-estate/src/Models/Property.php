@@ -58,6 +58,7 @@ class Property extends BaseModel
         'moderation_status' => ModerationStatusEnum::class,
         'type' => PropertyTypeEnum::class,
         'period' => PropertyPeriodEnum::class,
+        // 'images'=>'array'
     ];
 
     protected $dates = [
@@ -105,7 +106,11 @@ class Property extends BaseModel
                 $images = array_filter($images);
             }
 
-            return $images ?: [];
+            // dd($images);
+            // if(is_array($images)){
+                return $images ?: [];
+            // }
+            return [];
         } catch (Exception) {
             return [];
         }

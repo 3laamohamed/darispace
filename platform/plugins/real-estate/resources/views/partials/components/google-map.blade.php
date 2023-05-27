@@ -26,7 +26,7 @@
         }
 
         var map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 10.762622, lng: 106.660172},
+            center: {lat: 30.056920, lng: 31.399710},
             zoom: 8,
             mapTypeId: 'roadmap'
         });

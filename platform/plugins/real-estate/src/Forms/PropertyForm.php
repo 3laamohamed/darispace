@@ -292,7 +292,7 @@ class PropertyForm extends FormAbstract
                 ],
             ])
             ->add('currency_id', 'customSelect', [
-                'label' => trans('plugins/real-estate::project.form.currency'),
+                'label' => trans('plugins/real-estate::property.form.currency'),
                 'label_attr' => ['class' => 'control-label'],
                 'wrapper' => [
                     'class' => 'form-group mb-3 col-md-4',

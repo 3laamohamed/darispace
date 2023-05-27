@@ -19,7 +19,7 @@
 
             <br>
             <div class="text-center">
-                <button class="payment-checkout-btn btn btn-info" data-processing-text="{{ __('Processing. Please wait...') }}" data-error-header="{{ __('Error') }}">{{ __('Checkout') }}</button>
+                <button class="payment-checkout-btn btn btn-info" data-processing-text="{{ __('Processing. Please wait...') }}" data-error-header="{{ __('Error') }}">{{ __('Checkout_contact') }}</button>
             </div>
         </form>
     </div>

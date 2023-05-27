@@ -13,14 +13,16 @@
             margin: 5px;
             padding: 5px;
             box-sizing: border-box;
+            position: absolute;
+
             }
 
 
         </style>
 
-        <input type="text" id="search_input" style="width: 55% !important" name="location" class="form-control" placeholder="Search for a place" />
+        <input type="text" id="search_input" style="width: 55% !important;left: 129px !important;top: 47px !important;" name="location" class="form-control" placeholder="Search for a place" />
         <div id="information"></div>
-        <div id="map-canvas" style="height: 380px"></div>
+        <div id="map-canvas" style="height: 380px;width:100%"></div>
 
         {{-- <div id="map_canvas" style="height: 354px; width:713px;"></div> --}}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -74,7 +76,7 @@
                     });
 
                     var input = document.getElementById('search_input');
-                    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+                    // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
                     var searchBox = new google.maps.places.SearchBox(input);
 

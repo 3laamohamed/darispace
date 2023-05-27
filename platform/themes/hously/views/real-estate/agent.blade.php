@@ -12,6 +12,7 @@
         </div>
         <div class="py-4 px-6 w-full flex-[3]">
             <h2 class="text-2xl font-semibold">{{ $account->name }}</h2>
+            <h4 >{{ __($account->type) }}</h4>
             <hr class="my-4">
             <p>{!! BaseHelper::clean($account->description) !!}</p>
             <ul class="mt-5 space-y-2">
@@ -26,6 +27,14 @@
                         @endif
                     </span>
                 </li>
+
+                {{-- @if($account->type)
+                    <li>
+                        <i class="mr-1 mdi mdi-type-outline"></i>
+                            <span>{{ __($account->type) }}</span>
+                    </li>
+                @endif --}}
+
                 @if($account->email)
                     <li class="hover:text-primary">
                         <i class="mr-1 mdi mdi-email-outline"></i>
