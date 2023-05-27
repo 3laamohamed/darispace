@@ -72,6 +72,8 @@ class Account extends BaseModel implements
         'package_end_date',
     ];
 
+    protected $appends=['avatar_url'];
+
     protected static function boot(): void
     {
         parent::boot();

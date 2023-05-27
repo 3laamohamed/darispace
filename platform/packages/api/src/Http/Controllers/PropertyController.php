@@ -342,10 +342,11 @@ class PropertyController extends Controller
         try {
             $property = $this->propertyRepository->findOrFail($id);
 
-            if($property->expire_date <= \Carbon::now()){
+            // if($property->expire_date <= \Carbon::now()){
+            if(isset($property->duration) && $property->created_at >= now()->subDays($property->duration)){
                 return $response
                 ->setError()
-                ->setMessage(__('You Can\'t Delete this Property Before Expire Date' ));
+                ->setMessage(__("You Can't Delete this Property Before Expire Date" ));
             }
             $property->features()->detach();
             $this->propertyRepository->delete($property);

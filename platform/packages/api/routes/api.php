@@ -13,6 +13,8 @@ Route::group([
     Route::post('register', 'AuthenticationController@register');
     Route::post('login', 'AuthenticationController@login');
 
+    Route::get('indexR', 'AuthenticationController@indexR');
+
     Route::post('password/forgot', 'ForgotPasswordController@sendResetLinkEmail');
 
     Route::post('resend-verify-account-email', 'VerificationController@resend');
