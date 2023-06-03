@@ -60,7 +60,7 @@ class Property extends BaseModel
         'moderation_status' => ModerationStatusEnum::class,
         'type' => PropertyTypeEnum::class,
         'period' => PropertyPeriodEnum::class,
-        'real_estate_finance' => 'bool',
+        'real_estate_finance' => 'boolean',
         // 'images'=>'array'
     ];
 
