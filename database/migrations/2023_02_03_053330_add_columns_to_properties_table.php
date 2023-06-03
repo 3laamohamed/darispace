@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('re_properties', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->enum('payment_type',['installment','cash'])->nullable()->after('id');
             $table->boolean('real_estate_finance')->default(false)->after('id');
         });
