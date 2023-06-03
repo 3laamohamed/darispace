@@ -19,6 +19,7 @@ class City extends BaseModel
         'record_id',
         'order',
         'is_default',
+        'is_real_estate',
         'status',
     ];
 
@@ -36,7 +37,7 @@ class City extends BaseModel
     {
         return $this->hasMany(Project::class,'city_id');
     }
-    
+
     public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class)->withDefault();

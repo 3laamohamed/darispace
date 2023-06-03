@@ -11,7 +11,7 @@
             {!! Theme::partial('filters.investor', compact('id', 'type', 'investors')) !!}
 
             {{-- {!! Theme::partial('filters.location', compact('type')) !!} --}}
-            {!! Theme::partial('filters.city', compact('id','type')) !!}
+            {!! Theme::partial('filters.real_city', compact('id','type')) !!}
 
             {{-- {!! Theme::partial('filters.city', compact('id', 'type', 'categories')) !!} --}}
             {!! Theme::partial('filters.categories', compact('id', 'type', 'categories',)) !!}

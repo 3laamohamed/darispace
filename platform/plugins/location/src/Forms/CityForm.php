@@ -83,6 +83,11 @@ class CityForm extends FormAbstract
                 'label_attr' => ['class' => 'control-label'],
                 'default_value' => false,
             ])
+            ->add('is_real_estate', 'onOff', [
+                'label' => __('Is Real Estate ?'),
+                'label_attr' => ['class' => 'control-label'],
+                'real_estate_value' => false,
+            ])
             ->add('status', 'customSelect', [
                 'label' => trans('core/base::tables.status'),
                 'label_attr' => ['class' => 'control-label required'],

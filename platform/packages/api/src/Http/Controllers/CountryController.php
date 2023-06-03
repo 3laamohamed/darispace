@@ -59,12 +59,17 @@ class CountryController extends BaseController
             'select' => ['cities.id', 'cities.name'],
             'condition' => [
                 'cities.status' => BaseStatusEnum::PUBLISHED,
+                // 'cities.is_real_estate' => $request->is_real_estate,
             ],
             'order_by' => ['order' => 'ASC', 'name' => 'ASC'],
         ];
 
-        if ($request->input('state_id') && $request->input('state_id') != 'null') {
+        if ($request->input('state_id') && $request->input('state_id')) {
             $params['condition']['cities.state_id'] = $request->input('state_id');
+        }
+
+        if ($request->input('is_real_estate') && $request->input('is_real_estate') != 'null') {
+            $params['condition']['cities.is_real_estate'] = $request->input('is_real_estate');
         }
 
         $data = $this->cityRepository->advancedGet($params);
