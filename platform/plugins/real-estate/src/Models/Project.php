@@ -3,6 +3,7 @@
 namespace Botble\RealEstate\Models;
 
 use Botble\Base\Models\BaseModel;
+use Botble\Location\Models\City;
 use Botble\RealEstate\Enums\ProjectStatusEnum;
 use Exception;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -84,6 +85,10 @@ class Project extends BaseModel
         return $this->hasMany(Property::class, 'project_id');
     }
 
+    // public function city()
+    // {
+    //     return $this->belongsTo(City::class,'city_id');
+    // }
     public function getImagesAttribute($value): array
     {
         try {

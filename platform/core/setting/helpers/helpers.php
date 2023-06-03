@@ -9,6 +9,7 @@ if (! function_exists('setting')) {
     {
         if (! empty($key)) {
             try {
+
                 return app(SettingStore::class)->get($key, $default);
             } catch (Throwable) {
                 return $default;

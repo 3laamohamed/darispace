@@ -1230,17 +1230,21 @@ try {
 } catch (error) {}
 
 const choicesElements = [
+    '#choices-investor-projects',
     '#choices-category-projects',
+    '#choices-investor-sale',
     '#choices-category-sale',
     '#choices-bedrooms-sale',
     '#choices-bathrooms-sale',
     '#choices-floors-sale',
     '#choices-type-rent',
     '#choices-blocks-rent',
+    '#choices-investor-rent',
     '#choices-category-rent',
     '#choices-bedrooms-rent',
     '#choices-bathrooms-rent',
     '#choices-floors-rent',
+    '#choices-investor-mobile',
     '#choices-category-mobile',
     '#choices-bedrooms-mobile',
     '#choices-bathrooms-mobile',

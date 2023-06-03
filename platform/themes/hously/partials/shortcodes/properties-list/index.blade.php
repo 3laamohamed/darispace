@@ -13,10 +13,10 @@
             'name' => __('List'),
             'icon' => 'mdi mdi-view-list-outline',
         ],
-        'map' => [
-            'name' => __('Map'),
-            'icon' => 'mdi mdi-map-marker',
-        ],
+        // 'map' => [
+        //     'name' => __('Map'),
+        //     'icon' => 'mdi mdi-map-marker',
+        // ],
     ];
 
     $currentLayout = BaseHelper::stringify(request()->query('layout')) ?? (theme_option('properties_list_layout') ?: 'grid');

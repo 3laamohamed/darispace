@@ -16,14 +16,14 @@
 
             <div class="py-[30px] px-0 border-t border-gray-800 dark:border-gray-700">
                 <div class="container text-center">
-                    <div class="grid items-center gap-6 md:grid-cols-2">
-                        <div class="text-center ltr:md:text-left rtl:md:text-right">
+                    <div class="grid items-center gap-6 md:grid-cols-4">
+                        <div class="text-center ltr:md:text-left rtl:md:text-center">
                             <p class="mb-0 text-gray-300">
                                 {!! BaseHelper::clean(theme_option('copyright')) !!}
                             </p>
                         </div>
 
-                        <ul class="p-0 m-0 text-center list-none ltr:md:text-right rtl:md:text-left">
+                        {{-- <ul class="p-0 m-0 text-center list-none ltr:md:text-right rtl:md:text-left">
                             {!! Theme::partial('currency-switcher') !!}
                             @if($socialLinks = json_decode(theme_option('social_links')))
                                 <span class="social-icon">
@@ -37,7 +37,7 @@
                                     @endforeach
                                 </span>
                             @endif
-                        </ul>
+                        </ul> --}}
                     </div>
                 </div>
             </div>
@@ -65,6 +65,24 @@
 
     {!! Theme::footer() !!}
 
+    <script>
+
+            $('div').on('click', '#reset-filtr', (e) => {
+                e.preventDefault()
+                window.location.href=location.protocol + '//' + location.host + location.pathname;
+                // location.reload();
+            });
+            // function resetForm() {
+
+            //    floo= document.getElementById("choices-floors-rent").value;
+            //    floo = "";
+            //    console.log(floo);
+            //     $('.item-search').not(':has(> input[name="type"])') .find('input').val('');
+            //     // $('.item-search').find('select').prop('selectedIndex', 0);
+            //     $('#choices-floors-rent').prop('selectedIndex',0).val();
+            //     // $('select').val( $('select option:first').val() );                // document.refresh()
+            // }
+    </script>
     @if (session()->has('status') || session()->has('success_msg') || session()->has('error_msg') || (isset($errors) && $errors->count() > 0) || isset($error_msg))
         <script type="text/javascript">
             'use strict';

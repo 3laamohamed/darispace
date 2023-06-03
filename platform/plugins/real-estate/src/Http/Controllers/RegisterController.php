@@ -110,7 +110,10 @@ class RegisterController extends Controller
 
         $this->validator($request->input())->validate();
 
-        event(new Registered($account = $this->create($request->input())));
+        $request_data=$request->except('phone','country_code');
+        $request_data['phone']='+2'.$request->phone;
+        // dd($request_data);
+        event(new Registered($account = $this->create($request_data)));
 
         EmailHandler::setModule(REAL_ESTATE_MODULE_SCREEN_NAME)
             ->setVariableValues([
@@ -140,6 +143,7 @@ class RegisterController extends Controller
             'first_name' => 'required|max:120',
             'last_name' => 'required|max:120',
             'username' => 'required|max:60|min:2|unique:re_accounts,username',
+            'phone' => 'required|max:60|min:2|unique:re_accounts,phone',
             'email' => 'required|email|max:255|unique:re_accounts',
             'password' => 'required|min:6|confirmed',
         ];
@@ -164,7 +168,8 @@ class RegisterController extends Controller
             'last_name' => $data['last_name'],
             'username' => $data['username'],
             'email' => $data['email'],
-            'phone' => $data['username'],
+            'type' => $data['type'],
+            'phone' => $data['phone'],
             'password' => bcrypt($data['password']),
         ]);
     }

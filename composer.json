@@ -28,6 +28,7 @@
         "doctrine/dbal": "^3.2",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.21",
+        "laravel/passport": "^11.8",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "league/flysystem-aws-s3-v3": "^3.0",

@@ -23,9 +23,9 @@
                         <i class="mdi mdi-home-outline mr-1 text-xl"></i>
                         <span>
                             @if($account->properties_count === 1)
-                                {{ __(':count property', ['count' => number_format($account->properties_count)]) }}
+                            {{ __(':count property'). ' : '. number_format($account->properties_count??0) }}
                             @else
-                                {{ __(':count properties', ['count' => number_format($account->properties_count)]) }}
+                                {{ __(':count properties'). ' : '. number_format($account->properties_count??0) }}
                             @endif
                         </span>
                     </li>

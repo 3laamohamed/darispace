@@ -7,6 +7,7 @@ use Botble\Base\Forms\FormAbstract;
 use Botble\RealEstate\Enums\CustomFieldEnum;
 use Botble\RealEstate\Repositories\Interfaces\CustomFieldInterface;
 use Botble\RealEstate\Enums\ModerationStatusEnum;
+use Botble\RealEstate\Enums\PropertyDurationEnum;
 use Botble\RealEstate\Enums\PropertyPeriodEnum;
 use Botble\RealEstate\Enums\PropertyStatusEnum;
 use Botble\RealEstate\Enums\PropertyTypeEnum;
@@ -58,6 +59,8 @@ class PropertyForm extends FormAbstract
         Assets::addStyles(['datetimepicker'])
             ->addScripts(['input-mask'])
             ->addScriptsDirectly([
+                // 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDGhGk3DTCkjF1EUxpMm5ypFoQ-ecrS2gY&callback=initMap&v=weekly&libraries=places',
+
                 'vendor/core/plugins/real-estate/js/real-estate.js',
                 'vendor/core/plugins/real-estate/js/components.js',
                 'vendor/core/plugins/real-estate/js/custom-fields.js',
@@ -169,18 +172,18 @@ class PropertyForm extends FormAbstract
         }
 
         $this
-            ->add('location', 'text', [
-                'label' => trans('plugins/real-estate::property.form.location'),
-                'label_attr' => ['class' => 'control-label'],
-                'attr' => [
-                    'placeholder' => trans('plugins/real-estate::property.form.location'),
-                    'data-counter' => 300,
-                ],
-            ])
+            // ->add('location', 'text', [
+            //     'label' => trans('plugins/real-estate::property.form.location'),
+            //     'label_attr' => ['class' => 'control-label'],
+            //     'attr' => [
+            //         'placeholder' => trans('plugins/real-estate::property.form.location'),
+            //         'data-counter' => 300,
+            //     ],
+            // ])
             ->add('rowOpen', 'html', [
                 'html' => '<div class="row">',
             ])
-            ->add('latitude', 'text', [
+            ->add('latitude', 'hidden', [
                 'label' => trans('plugins/real-estate::property.form.latitude'),
                 'label_attr' => ['class' => 'control-label'],
                 'wrapper' => [
@@ -188,19 +191,20 @@ class PropertyForm extends FormAbstract
                 ],
                 'attr' => [
                     'placeholder' => 'Ex: 1.462260',
+                    'id' => 'latitude',
                     'data-counter' => 25,
                 ],
-                'help_block' => [
-                    'tag' => 'a',
-                    'text' => trans('plugins/real-estate::property.form.latitude_helper'),
-                    'attr' => [
-                        'href' => 'https://www.latlong.net/convert-address-to-lat-long.html',
-                        'target' => '_blank',
-                        'rel' => 'nofollow',
-                    ],
-                ],
+                // 'help_block' => [
+                //     'tag' => 'a',
+                //     'text' => trans('plugins/real-estate::property.form.latitude_helper'),
+                //     'attr' => [
+                //         'href' => 'https://www.latlong.net/convert-address-to-lat-long.html',
+                //         'target' => '_blank',
+                //         'rel' => 'nofollow',
+                //     ],
+                // ],
             ])
-            ->add('longitude', 'text', [
+            ->add('longitude', 'hidden', [
                 'label' => trans('plugins/real-estate::property.form.longitude'),
                 'label_attr' => ['class' => 'control-label'],
                 'wrapper' => [
@@ -208,17 +212,18 @@ class PropertyForm extends FormAbstract
                 ],
                 'attr' => [
                     'placeholder' => 'Ex: 103.812530',
+                    'id' => 'longitude',
                     'data-counter' => 25,
                 ],
-                'help_block' => [
-                    'tag' => 'a',
-                    'text' => trans('plugins/real-estate::property.form.longitude_helper'),
-                    'attr' => [
-                        'href' => 'https://www.latlong.net/convert-address-to-lat-long.html',
-                        'target' => '_blank',
-                        'rel' => 'nofollow',
-                    ],
-                ],
+                // 'help_block' => [
+                //     'tag' => 'a',
+                //     'text' => trans('plugins/real-estate::property.form.longitude_helper'),
+                //     'attr' => [
+                //         'href' => 'https://www.latlong.net/convert-address-to-lat-long.html',
+                //         'target' => '_blank',
+                //         'rel' => 'nofollow',
+                //     ],
+                // ],
             ])
             ->add('rowClose', 'html', [
                 'html' => '</div>',
@@ -287,7 +292,7 @@ class PropertyForm extends FormAbstract
                 ],
             ])
             ->add('currency_id', 'customSelect', [
-                'label' => trans('plugins/real-estate::project.form.currency'),
+                'label' => trans('plugins/real-estate::property.form.currency'),
                 'label_attr' => ['class' => 'control-label'],
                 'wrapper' => [
                     'class' => 'form-group mb-3 col-md-4',
@@ -297,7 +302,17 @@ class PropertyForm extends FormAbstract
                 ],
                 'choices' => $currencies,
             ])
-            ->add('period', 'customSelect', [
+            ->add('duration', 'customSelect', [
+                'label' => trans('duration'),
+                'label_attr' => ['class' => 'control-label required'],
+                'wrapper' => [
+                    'class' => 'form-group mb-3 duration-form-group col-md-4' . ($this->getModel()->type != PropertyTypeEnum::RENT ? ' ' : null),
+                ],
+                'attr' => [
+                    'class' => 'form-control select-search-full',
+                ],
+                'choices' => PropertyDurationEnum::labels(),
+            ])->add('period', 'customSelect', [
                 'label' => trans('plugins/real-estate::property.form.period'),
                 'label_attr' => ['class' => 'control-label required'],
                 'wrapper' => [
@@ -316,14 +331,14 @@ class PropertyForm extends FormAbstract
                 'label_attr' => ['class' => 'control-label'],
                 'default_value' => true,
             ])
-            ->add('auto_renew', 'onOff', [
-                'label' => trans('plugins/real-estate::property.renew_notice', ['days' => RealEstateHelper::propertyExpiredDays()]),
-                'label_attr' => ['class' => 'control-label'],
-                'default_value' => false,
-                'wrapper' => [
-                    'class' => 'form-group mb-3 auto-renew-form-group' . (! $this->getModel()->id || $this->getModel()->never_expired ? ' hidden' : null),
-                ],
-            ])
+            // ->add('auto_renew', 'onOff', [
+            //     'label' => trans('plugins/real-estate::property.renew_notice', ['days' => RealEstateHelper::propertyExpiredDays()]),
+            //     'label_attr' => ['class' => 'control-label'],
+            //     'default_value' => false,
+            //     'wrapper' => [
+            //         'class' => 'form-group mb-3 auto-renew-form-group' . (! $this->getModel()->id || $this->getModel()->never_expired ? ' hidden' : null),
+            //     ],
+            // ])
             ->addMetaBoxes([
                 'features' => [
                     'title' => trans('plugins/real-estate::property.form.features'),
@@ -332,6 +347,13 @@ class PropertyForm extends FormAbstract
                         compact('selectedFeatures', 'features')
                     )->render(),
                     'priority' => 1,
+                ],
+                'map' => [
+                    'title' => trans('plugins/real-estate::property.form.location'),
+                    'content' => view(
+                        'plugins/real-estate::partials.form-map'
+                    ),
+                    'priority' => 0,
                 ],
                 'facilities' => [
                     'title' => trans('plugins/real-estate::property.distance_key'),
@@ -366,11 +388,11 @@ class PropertyForm extends FormAbstract
                 'choices' => get_property_categories_with_children(),
                 'value' => old('categories', $selectedCategories),
             ])
-            ->add('project_id', 'customSelect', [
-                'label' => trans('plugins/real-estate::property.form.project'),
-                'label_attr' => ['class' => 'control-label'],
-                'choices' => [0 => trans('plugins/real-estate::property.select_project')] + $projects,
-            ])
+            // ->add('project_id', 'customSelect', [
+            //     'label' => trans('plugins/real-estate::property.form.project'),
+            //     'label_attr' => ['class' => 'control-label'],
+            //     'choices' => [0 => trans('plugins/real-estate::property.select_project')] + $projects,
+            // ])
             ->setBreakFieldPoint('status')
             ->add('author_id', 'autocomplete', [
                 'label' => trans('plugins/real-estate::property.account'),

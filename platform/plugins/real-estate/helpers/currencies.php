@@ -14,7 +14,7 @@ if (! function_exists('format_price')) {
      * @param bool $useSymbol
      * @return string
      */
-    function format_price($price, $currency = null, $withoutCurrency = false, $useSymbol = true, bool $fullNumber = false): string
+    function format_price($price, $currency = null, $withoutCurrency = false, $useSymbol = true, bool $fullNumber = true): string
     {
         if ($currency) {
             if (! $currency instanceof Currency) {

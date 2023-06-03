@@ -16,6 +16,8 @@ class SlugService
     {
         $slug = Str::slug($name, '-', ! SlugHelper::turnOffAutomaticUrlTranslationIntoLatin() ? 'en' : false);
 
+        // $slug = str_replace(' ', '_', $name);
+        // dd($slug);
         $index = 1;
         $baseSlug = $slug;
 

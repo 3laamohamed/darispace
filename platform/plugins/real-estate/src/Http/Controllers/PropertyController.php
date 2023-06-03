@@ -58,6 +58,7 @@ class PropertyController extends BaseController
             'author_type' => Account::class,
         ]);
 
+        // dd($request->all());
         $property = $this->propertyRepository->getModel();
         $property = $property->fill($request->input());
         $property->moderation_status = $request->input('moderation_status');
@@ -109,10 +110,12 @@ class PropertyController extends BaseController
         $property->fill($request->except(['expire_date']));
 
         $property->author_type = Account::class;
+        // dd(array_filter($request->input('images', [])));
         $property->images = json_encode(array_filter($request->input('images', [])));
         $property->moderation_status = $request->input('moderation_status');
         $property->never_expired = $request->input('never_expired');
 
+        // dd($property->images);
         $this->propertyRepository->createOrUpdate($property);
 
         event(new UpdatedContentEvent(PROPERTY_MODULE_SCREEN_NAME, $request, $property));

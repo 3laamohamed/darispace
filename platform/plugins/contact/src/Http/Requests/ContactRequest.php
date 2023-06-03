@@ -11,7 +11,7 @@ class ContactRequest extends Request
         $rules = [
             'name' => 'required',
             'email' => 'required|email',
-            'content' => 'required',
+            // 'content' => 'required',
         ];
 
         if (is_plugin_active('captcha')) {

@@ -36,11 +36,11 @@ class AccountPropertyForm extends PropertyForm
             ->remove('content')
             ->remove('images[]')
             ->remove('never_expired')
-            ->modify('auto_renew', 'onOff', [
-                'label' => trans('plugins/real-estate::property.renew_notice', ['days' => RealEstateHelper::propertyExpiredDays()]),
-                'label_attr' => ['class' => 'control-label'],
-                'default_value' => false,
-            ], true)
+            // ->modify('auto_renew', 'onOff', [
+            //     'label' => trans('plugins/real-estate::property.renew_notice', ['days' => RealEstateHelper::propertyExpiredDays()]),
+            //     'label_attr' => ['class' => 'control-label'],
+            //     'default_value' => false,
+            // ], true)
             ->remove('author_id')
             ->addAfter('description', 'content', 'customEditor', [
                 'label' => trans('core/base::forms.content'),

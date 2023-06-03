@@ -11,7 +11,7 @@
                 </button>
             </li>
         @endif
-        <li role="presentation" class="inline-block">
+        {{-- <li role="presentation" class="inline-block">
             <button @class(['w-full px-6 py-2 text-base font-medium transition-all duration-500 ease-in-out', 'rounded-md' => $style === 1, 'rounded-xl' => $style === 2, 'rounded-3xl' => $style === 4]) id="sale-tab" data-tabs-target="#sale" type="button" role="tab" aria-controls="sale" aria-selected="false">
                 {{ __('Sale') }}
             </button>
@@ -20,22 +20,45 @@
             <button @class(['w-full px-6 py-2 text-base font-medium transition-all duration-500 ease-in-out', 'rounded-md' => $style === 1, 'rounded-xl' => $style === 2, 'rounded-3xl' => $style === 4]) id="rent-tab" data-tabs-target="#rent" type="button" role="tab" aria-controls="rent" aria-selected="false">
                 {{ __('Rent') }}
             </button>
+        </li> --}}
+        <li role="presentation" class="inline-block">
+            <button @class(['w-full px-6 py-2 text-base font-medium transition-all duration-500 ease-in-out', 'rounded-md' => $style === 1, 'rounded-xl' => $style === 2, 'rounded-3xl' => $style === 4]) id="investor-tab" data-tabs-target="#investor" type="button" role="tab" aria-controls="investor" aria-selected="false">
+                {{ __('Investors') }}
+            </button>
         </li>
+
+        <li role="presentation" class="inline-block">
+            <button @class(['w-full px-6 py-2 text-base font-medium transition-all duration-500 ease-in-out', 'rounded-md' => $style === 1, 'rounded-xl' => $style === 2, 'rounded-3xl' => $style === 4]) id="property-tab" data-tabs-target="#property" type="button" role="tab" aria-controls="property" aria-selected="false">
+                {{ __('Property') }}
+            </button>
+        </li>
+
     </ul>
 
     <div class="p-6 bg-white shadow-md search-filter dark:bg-slate-900 ltr:rounded-tl-none rtl:rounded-tr-none ltr:rounded-tr-none rtl:rounded-tl-none ltr:md:rounded-tr-xl rtl:md:rounded-tl-xl rounded-xl dark:shadow-gray-700">
         @if($shortcode->enabled_search_projects)
             <div id="projects" role="tabpanel" aria-labelledby="projects-tab">
-                {!! Theme::partial('filters.project', ['type' => 'projects', 'categories' => $categories]) !!}
+                {!! Theme::partial('real-estate.projects.search-box', ['id'=>'sale','type' => 'projects', 'categories' => $categories]) !!}
             </div>
         @endif
 
-        <div class="hidden" id="sale" role="tabpanel" aria-labelledby="sale-tab">
+        {{-- <div class="hidden" id="sale" role="tabpanel" aria-labelledby="sale-tab">
             {!! Theme::partial('filters.property', ['type' => 'sale', 'categories' => $categories]) !!}
         </div>
 
         <div class="hidden" id="rent" role="tabpanel" aria-labelledby="rent-tab">
             {!! Theme::partial('filters.property', ['type' => 'rent', 'categories' => $categories]) !!}
+        </div> --}}
+
+        <div class="hidden" id="investor" role="tabpanel" aria-labelledby="investor-tab">
+            {!! Theme::partial('real-estate.investors.search-box', ['id'=>'mobile','categories' => $categories,'type' => \DB::table('re_investors')->get(), 'investors' => \DB::table('re_investors')->get()]) !!}
+        </div>
+
+        {{-- @php
+            dd($id);
+        @endphp --}}
+        <div class="hidden" id="property" role="tabpanel" aria-labelledby="property-tab">
+            {!! Theme::partial('real-estate.properties.search-box', ['id'=>'rent','categories'=>$categories,'type' => \DB::table('re_properties')->get(), 'properties' => \DB::table('re_properties')->get()]) !!}
         </div>
     </div>
 </div>

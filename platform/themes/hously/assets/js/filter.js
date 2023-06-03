@@ -48,6 +48,7 @@ class ItemFilter {
 
         this.$itemElement
             .on('change', '#sort-by', () => {
+                // alert();
                 const value = this.$itemElement.find('#sort-by').val()
                 this.searchParams.set('sort_by', value)
                 this.refresh()
@@ -58,6 +59,7 @@ class ItemFilter {
                 this.refresh()
             })
             .on('click', '#reset-filter', (e) => {
+                // alert();
                 e.preventDefault()
                 this.closeFilterDrawer()
 

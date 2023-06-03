@@ -46,6 +46,7 @@ class Account extends BaseModel implements
     protected $fillable = [
         'first_name',
         'last_name',
+        'type',
         'username',
         'email',
         'password',
@@ -70,6 +71,8 @@ class Account extends BaseModel implements
         'package_start_date',
         'package_end_date',
     ];
+
+    protected $appends=['avatar_url'];
 
     protected static function boot(): void
     {

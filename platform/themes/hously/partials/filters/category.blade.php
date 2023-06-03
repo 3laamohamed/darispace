@@ -5,7 +5,7 @@
         <select class="form-select z-2" data-trigger name="category_id" id="choices-category-{{ $id ?? $type }}" aria-label="{{ __('Category') }}">
             <option value="">{{ __('All Category') }}</option>
             @foreach($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                <option value="{{ $category->id }}" {{ request('category_id')==$category->id ? 'selected': ''}}>{{ $category->name }}</option>
             @endforeach
         </select>
     </div>

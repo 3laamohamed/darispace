@@ -57,6 +57,8 @@ class PublicController extends Controller
 
         try {
             $contact = $this->contactRepository->getModel();
+            // dd($request->all());
+
             $contact->fill($request->input());
             $this->contactRepository->createOrUpdate($contact);
 
@@ -82,7 +84,7 @@ class PublicController extends Controller
             return $response->setMessage(__('Send message successfully!'));
         } catch (Exception $exception) {
             info($exception->getMessage());
-
+            dd($exception->getMessage());
             return $response
                 ->setError()
                 ->setMessage(__("Can't send message on this time, please try again later!"));

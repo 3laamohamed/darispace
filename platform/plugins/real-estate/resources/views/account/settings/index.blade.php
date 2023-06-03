@@ -105,6 +105,14 @@
                                     <option value="other" {{ $user->gender == 'other' ? 'selected' : '' }}>{{ trans('plugins/real-estate::dashboard.gender_other') }}</option>
                                 </select>
                             </div>
+                            <!-- Type -->
+                            <div class="form-group mb-3">
+                                <label for="type">{{ __('type') }}</label>
+                                <select class="form-control" name="type" id="type">
+                                    <option value="property_owner" {{ $user->type == 'property_owner' ? 'selected' : '' }}>{{__('property_owner')}}</option>
+                                    <option value="property_office" {{ $user->type == 'property_office' ? 'selected' : '' }}>{{ __('property_office') }}</option>
+                                </select>
+                            </div>
                             @if (is_plugin_active('location'))
                                 <div class="row mb-3">
                                     <div class="col-md-4">

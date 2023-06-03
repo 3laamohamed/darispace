@@ -197,6 +197,7 @@ class PublicAccountController extends Controller
             )->count() < $package->account_limit;
         });
 
+        // dd($packages);
         return $response->setData([
             'packages' => PackageResource::collection($packages),
             'account' => new AccountResource($account),
@@ -345,28 +346,31 @@ class PublicAccountController extends Controller
 
                 $this->savePayment($package, $chargeId, $transactionRepository);
 
+                // dd('first');
                 return $response
-                    ->setNextUrl(route('public.account.packages'))
+                    ->setNextUrl('https://wa.me/201122465273')
                     ->setMessage(trans('plugins/real-estate::package.add_credit_success'));
             }
 
+            // dd('fgfg');
             return $response
                 ->setError()
-                ->setNextUrl(route('public.account.packages'))
+                ->setNextUrl('https://wa.me/201122465273')
                 ->setMessage($payPalService->getErrorMessage());
         }
 
         $this->savePayment($package, $request->input('charge_id'), $transactionRepository);
 
         if (! $request->has('success') || $request->input('success')) {
+            // dd('third');
             return $response
-                ->setNextUrl(route('public.account.packages'))
+                ->setNextUrl('https://wa.me/201122465273')
                 ->setMessage(session()->get('success_msg') ?: trans('plugins/real-estate::package.add_credit_success'));
         }
 
         return $response
             ->setError()
-            ->setNextUrl(route('public.account.packages'))
+            ->setNextUrl('https://wa.me/201122465273')
             ->setMessage(__('Payment failed!'));
     }
 

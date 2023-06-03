@@ -48,8 +48,8 @@
 
                         <div class="grid grid-cols-2 gap-2">
                             <div class="mb-4">
-                                <label class="font-medium" for="username">{{ __('Phone:') }}</label>
-                                <input id="username" name="username" type="text" @class(['form-control form-input dark:bg-slate-800 mt-1', 'is-invalid' => $errors->has('username')]) placeholder="{{ __('Phone') }}">
+                                <label class="font-medium" for="username">{{ __('Username:') }}</label>
+                                <input id="username" name="username" type="text" @class(['form-control form-input dark:bg-slate-800 mt-1', 'is-invalid' => $errors->has('username')]) placeholder="{{ __('Username') }}">
                                 @error('username')
                                 <span class="invalid-feedback">
                                     <strong>{{ $message }}</strong>
@@ -68,15 +68,40 @@
                             </div>
                         </div>
 
-                        {{--<div class="mb-4">
-                            <label class="font-medium" for="phone">{{ __('Phone:') }}</label>
-                            <input id="phone" name="phone" type="text" @class(['form-control form-input dark:bg-slate-800 mt-1', 'is-invalid' => $errors->has('phone')]) placeholder="{{ __('Phone') }}">
-                            @error('phone')
+
+
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="grid grid-cols-1">
+                            <div class="flex justify-between mb-4">
+                                <div class="mb-0" style="    width: 62%;margin-left: 0px;">
+                                    <label class="font-medium" for="country_code">{{  __('كود الدولة')}}</label>
+                                    <input id="country_code" name="country_code" value="+20" type="text" @class(['form-control form-input dark:bg-slate-800 mt-1', 'is-invalid' => $errors->has('country_code')]) disabled>
+
+                                </div>
+                                <div class="mb-0" style="padding-right: 8px">
+                                    <label class="font-medium" for="phone">{{ __('Phone:') }}</label>
+                                    <input id="phone" name="phone" type="text" @class(['form-control form-input dark:bg-slate-800 mt-1', 'is-invalid' => $errors->has('phone')]) placeholder="{{ __('01021690242') }}">
+                                    @error('phone')
+                                        <span class="invalid-feedback">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="font-medium" for="type">{{ __('Type:') }}</label>
+                                <select id="type" name="type" @class(['form-control form-input dark:bg-slate-800 mt-1', 'is-invalid' => $errors->has('type')])>
+                                    <option value="property_owner">{{ __('property_owner') }}</option>
+                                    <option value="property_office">{{ __('property_office') }}</option>
+                                </select>
+                                @error('type')
                                 <span class="invalid-feedback">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                            @enderror
-                        </div>--}}
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="grid grid-cols-2 gap-2">
                             <div class="mb-4">
@@ -96,6 +121,21 @@
                                        placeholder="{{ __('Password confirmation') }}">
                             </div>
                         </div>
+
+                        {{-- <div class="grid grid-cols-1 gap-2">
+                            <div class="mb-4">
+                                <label class="font-medium" for="type">{{ __('Type:') }}</label>
+                                <select id="type" name="type" @class(['form-control form-input dark:bg-slate-800 mt-1', 'is-invalid' => $errors->has('type')])>
+                                    <option value="property_owner">{{ __('property_owner') }}</option>
+                                    <option value="property_office">{{ __('property_office') }}</option>
+                                </select>
+                                @error('type')
+                                <span class="invalid-feedback">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div> --}}
 
                         <div class="mt-2 mb-4">
                             <button type="submit" class="w-full text-white rounded-md btn bg-primary hover:bg-secondary">{{ __('Register') }}</button>

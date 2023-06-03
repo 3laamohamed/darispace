@@ -34,7 +34,7 @@
 
                                 <div class="mb-5">
                                     <label for="comments" class="font-medium">{{ __('Your Comment:') }}</label>
-                                    <textarea name="comments" id="comments" class="mt-2 form-input textarea" placeholder="{{ __('Message:') }}"></textarea>
+                                    <textarea name="content" id="comments" class="mt-2 form-input textarea" placeholder="{{ __('Message:') }}"></textarea>
                                 </div>
                             </div>
 

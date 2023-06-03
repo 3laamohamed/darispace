@@ -9,16 +9,18 @@
             'name' => __('Grid'),
             'icon' => 'mdi mdi-view-grid-outline',
         ],
-        // 'list' => [
-        //     'name' => __('List'),
-        //     'icon' => 'mdi mdi-view-list-outline',
-        // ],
+        'list' => [
+            'name' => __('List'),
+            'icon' => 'mdi mdi-view-list-outline',
+        ],
         // 'map' => [
         //     'name' => __('Map'),
         //     'icon' => 'mdi mdi-map-marker',
         // ],
     ];
 
+//    dd( Theme::asset()->container('footer')->usePath()->add('filter', 'js/filter.js'));
+// dd((int)BaseHelper::stringify(request()->query('per_page')));
     $currentLayout = BaseHelper::stringify(request()->query('layout')) ?? (theme_option('investors_list_layout') ?: 'grid');
 
     if (! in_array($currentLayout, array_keys($layouts))) {
@@ -28,7 +30,7 @@
 {{-- <h1>Alaa</h1> --}}
 <div class="container mt-16 item-search">
     <div class="flex items-center justify-between">
-        {{-- <div class="flex gap-2">
+        <div class="flex gap-2">
             <button class="block px-3 py-2 text-white transition-all bg-primary md:hidden rounded-xl hover:bg-secondary" id="open-filter">
                 <i class="mdi mdi-filter"></i>
                 <span class="hidden md:block">{{ __('Filter') }}</span>
@@ -38,8 +40,8 @@
                     <i class="{{ $layout['icon'] }} text-2xl"></i>
                 </button>
             @endforeach
-        </div> --}}
-        {{-- <div class="flex items-center gap-3">
+        </div>
+        <div class="flex items-center gap-3">
             <div>
                 <select name="per_page" id="per-page" class="p-3 border rounded-lg cursor-pointer border-slate-300 focus-visible:outline-primary dark:text-slate-600">
                     <option value="">{{ __('Showing') }}</option>
@@ -56,7 +58,7 @@
                     @endforeach
                 </select>
             </div>
-        </div> --}}
+        </div>
     </div>
 </div>
 

@@ -14,12 +14,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use RvMedia;
 use Illuminate\Support\Str;
 
 class Property extends BaseModel
 {
+    use SoftDeletes;
     protected $table = 're_properties';
 
     protected $fillable = [
@@ -38,6 +40,7 @@ class Property extends BaseModel
         'status',
         'is_featured',
         'currency_id',
+        'duration',
         'city_id',
         'state_id',
         'country_id',
@@ -48,6 +51,8 @@ class Property extends BaseModel
         'auto_renew',
         'latitude',
         'longitude',
+        'payment_type',
+        'real_estate_finance',
     ];
 
     protected $casts = [
@@ -55,6 +60,8 @@ class Property extends BaseModel
         'moderation_status' => ModerationStatusEnum::class,
         'type' => PropertyTypeEnum::class,
         'period' => PropertyPeriodEnum::class,
+        'real_estate_finance' => 'bool',
+        // 'images'=>'array'
     ];
 
     protected $dates = [
@@ -102,7 +109,11 @@ class Property extends BaseModel
                 $images = array_filter($images);
             }
 
-            return $images ?: [];
+            // dd($images);
+            // if(is_array($images)){
+                return $images ?: [];
+            // }
+            return [];
         } catch (Exception) {
             return [];
         }

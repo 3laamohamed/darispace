@@ -9,6 +9,7 @@ class SaveFacilitiesService
 {
     public function execute(Property|Project $item, array|string|null $facilities): void
     {
+        // dd($facilities);
         if (! $facilities || ! is_array($facilities)) {
             return;
         }

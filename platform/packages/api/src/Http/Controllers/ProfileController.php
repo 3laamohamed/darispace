@@ -50,9 +50,11 @@ class ProfileController extends Controller
         try {
             $file = RvMedia::handleUpload($request->file('avatar'), 0, 'users');
             if (Arr::get($file, 'error') !== true) {
-                $user = $request->user()->update(['avatar' => $file['data']->url]);
+                $user = $request->user()->update(['avatar_id' => $file['data']->id]);
             }
 
+            $user=$request->user();
+            // dd($file);
             return $response
                 ->setData([
                     'avatar' => $user->avatar_url,
@@ -81,16 +83,17 @@ class ProfileController extends Controller
      */
     public function updateProfile(Request $request, BaseHttpResponse $response)
     {
-        $userId = $request->user()->id();
+        $userId = $request->user()->id;
 
         $validator = Validator::make($request->input(), [
-            'first_name' => 'required|max:120|min:2',
-            'last_name' => 'required|max:120|min:2',
-            'phone' => 'required|max:15|min:8',
-            'dob' => 'required|max:15|min:8',
+            'first_name' => 'nullable|max:120|min:2',
+            'last_name' => 'nullable|max:120|min:2',
+            'phone' => 'nullable|max:15|min:8',
+            'dob' => 'nullable|max:15|min:8',
             'gender' => 'nullable',
             'description' => 'nullable',
             'email' => 'nullable|max:60|min:6|email|unique:' . ApiHelper::getTable() . ',email,' . $userId,
+            'username' => 'nullable|max:60|min:6|unique:' . ApiHelper::getTable() . ',username,' . $userId,
         ]);
 
         if ($validator->fails()) {
@@ -101,10 +104,20 @@ class ProfileController extends Controller
         }
 
         try {
-            $user = $request->user()->update($request->input());
+            $request_data=$request->except('password','avatar');
+            if($request->password){
+                $request_data['password'] = Hash::make($request->input('password'));
+            }
+            if($request->avatar){
+                $file = RvMedia::handleUpload($request->file('avatar'), 0, 'users');
+                if (Arr::get($file, 'error') !== true) {
+                    $request_data['avatar_id'] = $file['data']->id;
+                }
+            }
+            $user = $request->user()->update($request_data);
 
             return $response
-                ->setData($user->toArray())
+                ->setData($request->user())
                 ->setMessage(__('Update profile successfully!'));
         } catch (Exception $ex) {
             return $response

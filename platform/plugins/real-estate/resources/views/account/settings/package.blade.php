@@ -54,3 +54,4 @@
     </div>
   </div>
 @endsection
+<script src="{{ asset('vendor/core/core/base/js/vue-app.js') }}"></script>

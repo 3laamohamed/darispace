@@ -7,6 +7,8 @@
             @foreach(['sale' => __('Sale'), 'rent' => __('Rent')] as $key => $value)
                 <option value="{{ $key }}">{{ $value }}</option>
             @endforeach
+
         </select>
     </div>
 </div>
+
