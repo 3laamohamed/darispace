@@ -39,7 +39,7 @@ class ProjectController extends Controller
     public function filterSelections(BaseHttpResponse $response)
     {
         $filters=[];
-        $filters['cities']=City::get();
+        $filters['cities']=City::where('status',BaseStatusEnum::PUBLISHED)->orderBy('name','ASC')->where('is_real_estate',1)->get();
         $filters['categories']=Category::get();
         $filters['investors']=Investor::get();
         return $response->setData($filters);
