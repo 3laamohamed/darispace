@@ -6,8 +6,12 @@ use Botble\Api\Http\Requests\ContactRequest;
 use Botble\Base\Http\Responses\BaseHttpResponse;
 use Botble\Contact\Events\SentContactEvent;
 use Botble\Contact\Repositories\Interfaces\ContactInterface;
+use Botble\Page\Models\Page;
 use Botble\RealEstate\Models\Account;
+use Botble\Shortcode\Compilers\Shortcode;
+use Botble\Shortcode\Shortcode as ShortcodeShortcode;
 use Botble\Testimonial\Models\Testimonial;
+use Botble\Theme\Supports\Youtube;
 use EmailHandler;
 use Exception;
 use Illuminate\Routing\Controller;
@@ -95,11 +99,23 @@ class PublicController extends Controller
 
     public function about(BaseHttpResponse $response)
     {
+
+        $shortcode=[];
+        $page=Page::findOrFail(7);
+
+        $about=explode('"',$page->content);
         $data['about']=[
-            'title'=>'شركة داري سبيس للاستشارات العقارية',
-            'content'=>'شركة داري سبيس للاستشارات العقارية داري سبيس للاستشارات العقارية وتطبيق داري سبيس هي وحدة اعمال داخل شركة المبرمجون العرب لتقنية المعلومات وهي شركة عقارية متخصصة في تقديم الاستشارات العقارية وتوفير العقارات المناسبة للعملاء حسب الميزانية الخاص لكل عميل كما تحتوي الشركة علي أكبر قاعدة بيانات للمطورين العقاريين بالتعاقد مع كبري شركات التطوير العقاري بمصر مما يساهم في توفير الوحدات العقارية للسادة العملاء علي حسب رغباتهم ومتطلباتهم الشخصية وتحتوي الشركة علي فريق عمل من المستشارين العقاريين ذو خبرة عالية بمجال الاستشارات العقارية والتسويق العقاري ، كما توفر خدمات الإعلانات العقارية للمستخدمين للذين يرغبون في طرح وحداتهم العقارية للبيع أو للتأجير وذلك عبر موقع وتطبيق داري سبيس',
-            'video'=>'https://youtu.be/TIiwys0p2ws'
+            'title'=>$about[1],
+            'content'=>$about[3],
+            'video'=>$about[7]
         ];
+        // add_shortcode('intro-about-us', __('Intro About Us'), __('Intro About Us'), function (Shortcode $shortcode) {
+        //     $shortcode=$shortcode->youtube_video_id = $shortcode->youtube_video_url ? Youtube::getYoutubeVideoID($shortcode->youtube_video_url) : null;
+
+        // });
+        // $shortcode=shortcode()->getAll()['intro-about-us'];
+        // dd($shortcode);
+
         $data['team']=Account::with('avatar')->whereIn('id',[34,35,36])->select('id','avatar_id','first_name','last_name','company','description')->get();
         $data['testimonials']=Testimonial::get();
         return $response->setData($data);

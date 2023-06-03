@@ -41,6 +41,7 @@ Route::group([
     Route::get('projects/filterSelections','ProjectController@filterSelections');
     Route::get('project/{id}','ProjectController@getProject');
     Route::get('projects/filter','ProjectController@filterProjects');
+    Route::get('projects/getCities','ProjectController@getCities');
 
 
     //investors
@@ -68,6 +69,7 @@ Route::group([
     Route::get('getCities','CountryController@getCities');
     Route::get('getStates','CountryController@getStates');
     Route::get('getCurrencies','CountryController@getCurrencies');
+
 
     //about
     Route::get('about','PublicController@about');

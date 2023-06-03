@@ -4,8 +4,11 @@ namespace Botble\Api\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Botble\Api\Http\Resources\ProjectResource;
+use Botble\Base\Enums\BaseStatusEnum;
 use Botble\Base\Http\Responses\BaseHttpResponse;
+use Botble\Location\Http\Resources\CityResource;
 use Botble\Location\Models\City;
+use Botble\Location\Repositories\Interfaces\CityInterface;
 use Botble\RealEstate\Models\Category;
 use Botble\RealEstate\Models\Investor;
 use Botble\RealEstate\Models\Project;
@@ -48,13 +51,10 @@ class ProjectController extends Controller
         return $response->setData(new ProjectResource($project));
     }
 
-    /**
-     * Update Avatar
-     *
-     * @bodyParam avatar file required Avatar file.
-     *
-     * @group Project
-     * @authenticated
-     */
+    public function getCities(Request $request, BaseHttpResponse $response)
+    {
+        $data=City::where('status',BaseStatusEnum::PUBLISHED)->orderBy('name','ASC')->with('projects')->whereHas('projects')->get();
 
+        return $response->setData(CityResource::collection($data));
+    }
 }

@@ -363,12 +363,13 @@ class Utils
     {
         $translation = trans($key, $replace);
 
-        if ($translation === $key) {
-            $translation = trans($key, $replace, config('app.fallback_locale'));
+        if ($translation === $key || $translation === null) {
+            $translation = trans($key, $replace, 'en');
         }
 
+
         if ($translation === $key) {
-            return trans($key, $replace, 'en');
+            throw new \Exception("Translation not found for $key. You can add a translation for this in your `lang/scribe.php`, but this is likely a problem with the package. Please open an issue.");
         }
 
         return $translation;
