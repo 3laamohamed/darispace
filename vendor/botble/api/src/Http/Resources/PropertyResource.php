@@ -32,6 +32,8 @@ class PropertyResource extends JsonResource
             'duration' => $this->duration,
             'views' => $this->views,
             'price' => $this->price,
+            'payment_type' => $this->payment_type,
+            'real_estate_finance' => $this->real_estate_finance,
             'number_bedroom' => $this->number_bedroom,
             'number_bathroom' => $this->number_bathroom,
             'number_floor' => $this->number_floor,

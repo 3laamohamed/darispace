@@ -125,6 +125,14 @@ class PropertyRepository extends RepositoriesAbstract implements PropertyInterfa
             $this->model = $this->model->where('id',request()->property_id);
         }
 
+        if (request()->real_estate_finance !== null | request()->real_estate_finance=="0") {
+        $this->model = $this->model->where('real_estate_finance',(int)request()->real_estate_finance);
+        }
+
+        if (request()->payment_type !== null) {
+            $this->model = $this->model->where('payment_type',request()->payment_type);
+        }
+
         if (request()->state_id !== null) {
             $this->model = $this->model->where('state_id',request()->state_id);
         }
