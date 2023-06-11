@@ -93,6 +93,36 @@ app()->booted(function () {
             return Theme::partial('shortcodes.featured-properties.admin', compact('attributes', 'types'));
         });
 
+        add_shortcode('latest-properties', __('Latest Properties'), __('Latest Properties'), function (Shortcode $shortcode) {
+            Theme::asset()->container('footer')->usePath()->add('wishlist', 'js/wishlist.js');
+
+            $conditions = [
+                // 're_properties.is_latest' => true,
+            ];
+
+            if ($shortcode->type) {
+                $conditions['re_properties.type'] = $shortcode->type;
+            }
+
+            $properties = app(PropertyInterface::class)->advancedGet([
+                'condition' => $conditions + RealEstateHelper::getPropertyDisplayQueryConditions(),
+                'take' => (int)$shortcode->limit ?: 6,
+                'order_by' => ['created_at' => 'DESC'],
+                'with' => RealEstateHelper::getPropertyRelationsQuery(),
+                'withCount' => 'reviews',
+                'withAvg' => ['reviews', 'star'],
+            ]);
+
+            return Theme::partial('shortcodes.latest-properties.index', compact('shortcode', 'properties'));
+        });
+
+        shortcode()->setAdminConfig('latest-properties', function (array $attributes) {
+            $types = PropertyTypeEnum::labels() + ['' => __('All')];
+
+            return Theme::partial('shortcodes.latest-properties.admin', compact('attributes', 'types'));
+        });
+
+
         add_shortcode('featured-investors', __('Featured Investors'), __('Featured Investors'), function (Shortcode $shortcode) {
             Theme::asset()->container('footer')->usePath()->add('wishlist', 'js/wishlist.js');
 
