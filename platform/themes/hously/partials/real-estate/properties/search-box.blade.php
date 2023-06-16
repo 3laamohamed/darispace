@@ -10,7 +10,9 @@
 
             {{-- {!! Theme::partial('filters.location', compact('type')) !!} --}}
 
-            {!! Theme::partial('filters.state', compact('id','type')) !!}
+            {{-- {!! Theme::partial('filters.state', compact('id','type')) !!} --}}
+
+            {!! Theme::partial('filters.real_city', compact('id','type')) !!}
 
             {!! Theme::partial('filters.type', compact('id', 'type')) !!}
         </div>

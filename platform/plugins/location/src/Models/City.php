@@ -6,6 +6,7 @@ use Botble\Base\Casts\SafeContent;
 use Botble\Base\Enums\BaseStatusEnum;
 use Botble\Base\Models\BaseModel;
 use Botble\RealEstate\Models\Project;
+use Botble\RealEstate\Models\Property;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class City extends BaseModel
@@ -36,6 +37,11 @@ class City extends BaseModel
     public function projects()
     {
         return $this->hasMany(Project::class,'city_id');
+    }
+
+    public function properties()
+    {
+        return $this->hasMany(Property::class,'city_id');
     }
 
     public function country(): BelongsTo

@@ -18,6 +18,39 @@
                                 @if($subtitle = $shortcode->subtitle)
                                     <p class="max-w-xl text-xl text-white/70">{!! BaseHelper::clean($subtitle) !!}</p>
                                 @endif
+                                {{-- <div class="container relative">
+                                    <div class="grid justify-center grid-cols-1">
+                                        <div class="relative">
+                                            <a class="btn btn-google" href="#" title="Google Play">Google Play</a>
+                                            <a class="btn btn-google" href="#" title="Google Play">Google Play</a>
+                                        </div>
+                                    </div>
+                                </div> --}}
+
+                                <div class="container">
+                                    <center>
+                                <h2 class="h3 py-4"></h2>
+                                <!-- App Store button -->
+                                <a href="https://www.kobinet.com.tr/" target="_blank" class="market-btn apple-btn" role="button">
+                                    <span class="market-button-subtitle">Download on the</span>
+                                    <span class="market-button-title">App Store</span>
+                                </a>
+
+                                <!-- Google Play button -->
+                                <a href="https://www.kobinet.com.tr/" target="_blank" class="market-btn google-btn" role="button">
+                                    <span class="market-button-subtitle">Download on the</span>
+                                    <span class="market-button-title">Google Play</span>
+                                </a>
+
+                                <!-- Windows store button -->
+                                <a href="https://www.kobinet.com.tr/" target="_blank" class="market-btn windows-btn" role="button">
+                                    <span class="market-button-subtitle">Download on the</span>
+                                    <span class="market-button-title">Windows Store</span>
+                                </a>
+
+                               
+                                    </center>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -25,6 +58,13 @@
             </div>
         </section>
 
+        <div class="container relative">
+            <div class="grid justify-center grid-cols-1">
+                <div class="relative -mt-32">
+                    <a class="btn btn-google" href="#" title="Google Play">Google Play</a>
+                </div>
+            </div>
+        </div>
         @if($shortcode->enabled_search_box)
             <div class="container relative">
                 <div class="grid justify-center grid-cols-1">

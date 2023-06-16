@@ -7,6 +7,7 @@ use Botble\Faq\FaqCollection;
 use Botble\Faq\FaqItem;
 use Botble\Faq\Repositories\Interfaces\FaqCategoryInterface;
 use Botble\Faq\Repositories\Interfaces\FaqInterface;
+use Botble\Location\Models\City;
 use Botble\Location\Repositories\Interfaces\CityInterface;
 use Botble\RealEstate\Enums\PropertyTypeEnum;
 use Botble\RealEstate\Models\Investor;
@@ -134,6 +135,19 @@ app()->booted(function () {
         shortcode()->setAdminConfig('featured-investors', function (array $attributes) {
             return Theme::partial('shortcodes.featured-investors.admin', compact('attributes'));
         });
+
+        add_shortcode('featured-cities', __('Featured Cities'), __('Featured Cities'), function (Shortcode $shortcode) {
+            Theme::asset()->container('footer')->usePath()->add('wishlist', 'js/wishlist.js');
+
+            $cities = City::where('is_real_estate',1)->take((int)$shortcode->limit ?: 6)->get();
+
+            return Theme::partial('shortcodes.featured-cities.index', compact('shortcode', 'cities'));
+        });
+
+        shortcode()->setAdminConfig('featured-cities', function (array $attributes) {
+            return Theme::partial('shortcodes.featured-cities.admin', compact('attributes'));
+        });
+
 
         add_shortcode('featured-projects', __('Featured Projects'), __('Featured Projects'), function (Shortcode $shortcode) {
             Theme::asset()->container('footer')->usePath()->add('wishlist', 'js/wishlist.js');
