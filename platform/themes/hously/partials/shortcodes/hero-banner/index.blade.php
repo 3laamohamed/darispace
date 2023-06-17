@@ -31,10 +31,10 @@
                                     <center>
                                 <h2 class="h3 py-4"></h2>
                                 <!-- App Store button -->
-                                <a href="#" target="_blank" class="market-btn apple-btn" role="button">
+                                {{-- <a href="#" target="_blank" class="market-btn apple-btn" role="button">
                                     <span class="market-button-subtitle">حمل التطبيق على</span>
                                     <span class="market-button-title">App Store</span>
-                                </a>
+                                </a> --}}
 
                                 <!-- Google Play button -->
                                 <a href="https://play.google.com/store/apps/details?id=com.darispace.arabcoders" target="_blank" class="market-btn google-btn" role="button">
@@ -43,10 +43,10 @@
                                 </a>
 
                                 <!-- Windows store button -->
-                                <a href="#" target="_blank" class="market-btn windows-btn" role="button">
+                                {{-- <a href="#" target="_blank" class="market-btn windows-btn" role="button">
                                     <span class="market-button-subtitle">حمل التطبيق على</span>
                                     <span class="market-button-title">Windows Store</span>
-                                </a>
+                                </a> --}}
 
 
                                     </center>
