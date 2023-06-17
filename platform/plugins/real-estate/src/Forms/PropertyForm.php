@@ -138,6 +138,11 @@ class PropertyForm extends FormAbstract
                 'label_attr' => ['class' => 'control-label'],
                 'default_value' => false,
             ])
+            ->add('is_recomended', 'onOff', [
+                'label' => trans('core/base::forms.is_recomended'),
+                'label_attr' => ['class' => 'control-label'],
+                'default_value' => false,
+            ])
             ->add('description', 'textarea', [
                 'label' => trans('core/base::forms.description'),
                 'label_attr' => ['class' => 'control-label'],

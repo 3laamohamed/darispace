@@ -65,6 +65,35 @@ app()->booted(function () {
             return Theme::partial('shortcodes.hero-banner.admin', compact('attributes', 'styles'));
         });
 
+        add_shortcode('recomended-properties', __('Recomended Properties'), __('Recomended Properties'), function (Shortcode $shortcode) {
+            Theme::asset()->container('footer')->usePath()->add('wishlist', 'js/wishlist.js');
+
+            $conditions = [
+                're_properties.is_recomended' => true,
+            ];
+
+            if ($shortcode->type) {
+                $conditions['re_properties.type'] = $shortcode->type;
+            }
+
+            $properties = app(PropertyInterface::class)->advancedGet([
+                'condition' => $conditions + RealEstateHelper::getPropertyDisplayQueryConditions(),
+                'take' => (int)$shortcode->limit ?: 6,
+                'order_by' => ['created_at' => 'DESC'],
+                'with' => RealEstateHelper::getPropertyRelationsQuery(),
+                'withCount' => 'reviews',
+                'withAvg' => ['reviews', 'star'],
+            ]);
+
+            return Theme::partial('shortcodes.recomended-properties.index', compact('shortcode', 'properties'));
+        });
+
+        shortcode()->setAdminConfig('recomended-properties', function (array $attributes) {
+            $types = PropertyTypeEnum::labels() + ['' => __('All')];
+
+            return Theme::partial('shortcodes.recomended-properties.admin', compact('attributes', 'types'));
+        });
+
         add_shortcode('featured-properties', __('Featured Properties'), __('Featured Properties'), function (Shortcode $shortcode) {
             Theme::asset()->container('footer')->usePath()->add('wishlist', 'js/wishlist.js');
 

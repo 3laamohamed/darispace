@@ -1,7 +1,9 @@
 <ul {!! $options !!}>
     @foreach($menu_nodes->loadMissing('metadata') as $key => $row)
         <li @class(['has-submenu parent-menu-item' => $row->has_child, 'active' => $row->active])>
-            <a href="{{ url($row->url) }}" target="{{ $row->target }}" class="sub-menu-item">
+            <a @if ($row->title=='معلومات عنا' || $row->title=='تواصل معنا')
+                style="width:131px"
+            @endif  href="{{ url($row->url) }}" target="{{ $row->target }}" class="sub-menu-item">
                 @if ($iconImage = $row->getMetadata('icon_image', true))
                     <img src="{{ RvMedia::getImageUrl($iconImage) }}" class="w-3 h-3 inline-block align-top mt-[5px]" />
                 @elseif ($row->icon_font)

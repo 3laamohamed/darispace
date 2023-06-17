@@ -59,9 +59,14 @@
                             <i data-feather="user" class="h-4 w-4 stroke-[3]"></i>
                         </a>
                     </li>
-                    <li class="hidden mb-0 sm:inline ltr:pl-1 rtl:pr-1">
+                    <li class="inline mb-0">
                         <a href="{{ route('public.account.properties.index') }}" class="text-white rounded-full btn bg-primary hover:bg-secondary border-primary dark:border-primary" aria-label="{{ __('Add your listing') }}">
                             {{ __('Add your listing') }}
+                        </a>
+                    </li>
+                    <li class="inline mb-0">
+                        <a href="tel:+20 112 246 5273" class="text-white rounded-full btn bg-primary hover:bg-secondary border-primary dark:border-primary" aria-label="{{ __('Add your listing') }}">
+                            {{ __('اطلب استشارة') }}
                         </a>
                     </li>
                 @endif

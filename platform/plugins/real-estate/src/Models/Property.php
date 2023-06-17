@@ -38,6 +38,7 @@ class Property extends BaseModel
         'square',
         'price',
         'status',
+        'is_recomended',
         'is_featured',
         'currency_id',
         'duration',
