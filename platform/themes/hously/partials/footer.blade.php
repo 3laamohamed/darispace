@@ -72,6 +72,8 @@
                 window.location.href=location.protocol + '//' + location.host + location.pathname;
                 // location.reload();
             });
+
+
             // function resetForm() {
 
             //    floo= document.getElementById("choices-floors-rent").value;
@@ -82,6 +84,37 @@
             //     $('#choices-floors-rent').prop('selectedIndex',0).val();
             //     // $('select').val( $('select option:first').val() );                // document.refresh()
             // }
+
+            function updateQueryStringParameter(uri, key, value) {
+
+                }
+            /* Load positions into postion <selec> */
+                $( "#choices-bathrooms-rent" ).change(function()
+                {
+                    key = 'state_id';
+                    value = $(this).val();
+                    uri = window.location.href;
+                    var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+                    var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+                    if (uri.match(re)) {
+                        window.location.href= uri.replace(re, '$1' + key + "=" + value + '$2');
+                    }
+                    else {
+                        window.location.href= uri + separator + key + "=" + value;
+                    }
+
+                    // $.getJSON("/states/"+ $(this).val() +"/getCities", function(jsonData){
+                    //     select = '<select class="form-select z-2" data-trigger name="city_id" id="choices-blocks-rent" aria-label="المدينة">';
+                    //     $.each(jsonData, function(i,data)
+                    //     {
+                    //         select +='<option value="'+data.id+'">'+data.name+'</option>';
+                    //     });
+                    //     select += '</select>';
+                    //     console.log(select);
+                    //     $("#cities1").html(select);
+                    // });
+            });
+
     </script>
     @if (session()->has('status') || session()->has('success_msg') || session()->has('error_msg') || (isset($errors) && $errors->count() > 0) || isset($error_msg))
         <script type="text/javascript">

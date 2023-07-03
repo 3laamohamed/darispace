@@ -14,3 +14,10 @@
 Route::get('clear-cache',function(){
     \Artisan::call('optimize:clear');
 });
+
+
+Route::get('states/{id}/getCities',function($id){
+    $cities = \DB::table('cities')->where('state_id',$id)->where('is_real_estate',1)->get();
+    return response()->json($cities);
+});
+
