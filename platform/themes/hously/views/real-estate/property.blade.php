@@ -209,14 +209,14 @@
                                                 <span dir="ltr">{{ $author->phone }}</span>
                                             @endif
                                         </p>
-                                        <p class="leading-none break-all">
+                                        {{-- <p class="leading-none break-all">
                                             @if(setting('real_estate_hide_agency_email', 0))
                                                 {{ Str::mask($author->email, '*', 4, -4) }}
                                             @else
                                                 {{ $author->email }}
                                             @endif
-                                        </p>
-                                        <a href="{{ $author->url }}" class="text-white btn btn-sm bg-primary hover:bg-secondary">{{ __('View more') }}</a>
+                                        </p> --}}
+                                        {{-- <a href="{{ $author->url }}" class="text-white btn btn-sm bg-primary hover:bg-secondary">{{ __('View more') }}</a> --}}
                                     </div>
                                 </div>
                             </div>
