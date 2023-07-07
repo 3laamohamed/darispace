@@ -9,16 +9,16 @@ class PropertyObserver
 {
     public function retrieved(Property $property)
     {
-        if(isset($property->duration) && $property->created_at < now()->subDays($property->duration)){
-        // dd(now()->subDays($property->duration),$property->duration);
+        // if(isset($property->duration) && $property->created_at < now()->subDays($property->duration)){
+        // // dd(now()->subDays($property->duration),$property->duration);
 
-            // $property->duration = now()->subDays($property->duration);
-            // $property->save();
-            // $property->delete();
-            $property->moderation_status='pending';
-            $property->save();
+        //     // $property->duration = now()->subDays($property->duration);
+        //     // $property->save();
+        //     // $property->delete();
+        //     $property->moderation_status='pending';
+        //     $property->save();
 
-        }
+        // }
     }
     /**
      * Handle the Property "created" event.
@@ -44,11 +44,11 @@ class PropertyObserver
     }
     public function updating(Property $property)
     {
-        if($property->moderation_status != 'approved' && request()->moderation_status == 'approved'){
-            if(isset($property->duration) && $property->created_at < now()->subDays($property->duration)){
-                $property->created_at = Carbon::now();
-                }
-        }
+        // if($property->moderation_status != 'approved' && request()->moderation_status == 'approved'){
+        //     if(isset($property->duration) && $property->created_at < now()->subDays($property->duration)){
+        //         $property->created_at = Carbon::now();
+        //         }
+        // }
     }
 
     /**

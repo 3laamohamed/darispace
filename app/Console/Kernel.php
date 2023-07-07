@@ -15,8 +15,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('add:credit')->monthlyOn(1,'0:0');
-        $schedule->command('add:credit')->everyMinute();
+        $schedule->command('add:credit')->monthlyOn(1,'0:0');
+        // $schedule->command('add:credit')->everyMinute();
     }
 
     /**
