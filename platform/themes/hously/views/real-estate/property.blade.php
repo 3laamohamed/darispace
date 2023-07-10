@@ -52,7 +52,7 @@
                         </li>
                     @endif
                 </ul>
-                <div class="text-slate-600 ck-content">{!! BaseHelper::clean($property->content) !!}</div>
+                <div class="text-slate-600 ck-content">{!! BaseHelper::clean($property->description) !!}</div>
 
                 @if ($property->features->count())
                     <h5 class="pt-5 mb-5 text-xl font-bold border-b border-gray-300">{{ __('Features') }}</h5>
