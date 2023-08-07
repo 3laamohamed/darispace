@@ -76,6 +76,7 @@ class AccountTable extends TableAbstract
             ->getModel()
             ->select([
                 'id',
+                'type',
                 'first_name',
                 'last_name',
                 'email',
@@ -96,6 +97,10 @@ class AccountTable extends TableAbstract
             'id' => [
                 'title' => trans('core/base::tables.id'),
                 'width' => '20px',
+            ],
+            'type' => [
+                'title' => trans('core/base::tables.type'),
+                'class' => 'text-start',
             ],
             'avatar_id' => [
                 'title' => trans('core/base::tables.image'),
@@ -151,6 +156,11 @@ class AccountTable extends TableAbstract
             ],
             'last_name' => [
                 'title' => trans('plugins/real-estate::account.last_name'),
+                'type' => 'text',
+                'validate' => 'required|max:120',
+            ],
+            'type' => [
+                'title' => __('Type'),
                 'type' => 'text',
                 'validate' => 'required|max:120',
             ],

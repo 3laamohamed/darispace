@@ -13,6 +13,7 @@ use Botble\Payment\Enums\PaymentMethodEnum;
 use Botble\Payment\Enums\PaymentStatusEnum;
 use Botble\Payment\Models\Payment;
 use Botble\Payment\Supports\PaymentHelper;
+use Botble\RealEstate\Enums\AccountTypeEnum;
 use Botble\RealEstate\Enums\ConsultStatusEnum;
 use Botble\RealEstate\Enums\ModerationStatusEnum;
 use Botble\RealEstate\Http\Requests\CityRequest;
@@ -23,6 +24,7 @@ use Botble\RealEstate\Repositories\Interfaces\ConsultInterface;
 use Botble\RealEstate\Repositories\Interfaces\PackageInterface;
 use Botble\RealEstate\Repositories\Interfaces\PropertyInterface;
 use Botble\RealEstate\Supports\InvoiceHelper;
+use Botble\RealEstate\Tables\AccountTable;
 use Botble\RealEstate\Tables\PropertyTable;
 use Botble\Theme\Supports\ThemeSupport;
 use Form;
@@ -271,6 +273,95 @@ class HookServiceProvider extends ServiceProvider
                         ],
                         'filter_values' => [
                             ModerationStatusEnum::PENDING,
+                        ],
+                    ]))
+                    ->init($widgets, $widgetSettings);
+            }, 3, 2);
+            add_filter(DASHBOARD_FILTER_ADMIN_LIST, function ($widgets, $widgetSettings) {
+                $items = app(AccountInterface::class)
+                    ->getModel()
+                    ->where('type', AccountTypeEnum::PROPERTY_OWNER)
+                    ->count();
+
+                return (new DashboardWidgetInstance())
+                    ->setType('stats')
+                    ->setPermission('property.index')
+                    ->setTitle(__('Property Owner'))
+                    ->setKey('widget_total_5')
+                    ->setIcon('fas fa-briefcase')
+                    ->setColor('#32c5d2')
+                    ->setStatsTotal($items)
+                    ->setRoute(route('property.index', [
+                        'filter_table_id' => strtolower(Str::slug(Str::snake(AccountTable::class))),
+                        'class' => AccountTable::class,
+                        'filter_columns' => [
+                            'type',
+                        ],
+                        'filter_operators' => [
+                            '=',
+                        ],
+                        'filter_values' => [
+                            AccountTypeEnum::PROPERTY_OWNER,
+                        ],
+                    ]))
+                    ->init($widgets, $widgetSettings);
+            }, 3, 2);
+
+            add_filter(DASHBOARD_FILTER_ADMIN_LIST, function ($widgets, $widgetSettings) {
+                $items = app(AccountInterface::class)
+                    ->getModel()
+                    ->where('type', AccountTypeEnum::CUSTOMER)
+                    ->count();
+
+                return (new DashboardWidgetInstance())
+                    ->setType('stats')
+                    ->setPermission('property.index')
+                    ->setTitle(__('Customers'))
+                    ->setKey('widget_total_7')
+                    ->setIcon('fas fa-briefcase')
+                    ->setColor('#32c5d2')
+                    ->setStatsTotal($items)
+                    ->setRoute(route('property.index', [
+                        'filter_table_id' => strtolower(Str::slug(Str::snake(AccountTable::class))),
+                        'class' => AccountTable::class,
+                        'filter_columns' => [
+                            'type',
+                        ],
+                        'filter_operators' => [
+                            '=',
+                        ],
+                        'filter_values' => [
+                            AccountTypeEnum::CUSTOMER,
+                        ],
+                    ]))
+                    ->init($widgets, $widgetSettings);
+            }, 3, 2);
+
+            add_filter(DASHBOARD_FILTER_ADMIN_LIST, function ($widgets, $widgetSettings) {
+                $items = app(AccountInterface::class)
+                    ->getModel()
+                    ->where('type', AccountTypeEnum::PROPERTY_OFFICE)
+                    ->count();
+
+                return (new DashboardWidgetInstance())
+                    ->setType('stats')
+                    ->setPermission('property.index')
+                    ->setTitle(__('Property Office'))
+                    ->setKey('widget_total_6')
+                    ->setIcon('fas fa-briefcase')
+                    ->setColor('#32c5d2')
+                    ->setStatsTotal($items)
+                    ->setRoute(route('property.index', [
+                        'filter_table_id' => strtolower(Str::slug(Str::snake(AccountTable::class))),
+                        'class' => AccountTable::class,
+                        'filter_columns' => [
+                            'type',
+                        ],
+                        'filter_operators' => [
+                            '=',
+                        ],
+                        'filter_values' => [
+                            AccountTypeEnum::PROPERTY_OFFICE,
                         ],
                     ]))
                     ->init($widgets, $widgetSettings);

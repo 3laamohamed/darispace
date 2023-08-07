@@ -237,12 +237,14 @@ class DashboardWidgetInstance
 
         $widget->statsTotal = $this->statsTotal;
 
+        // dd($widget);
         $widgets[$this->key] = [
             'id' => $widget->id,
             'type' => $this->type,
             'view' => view('core/dashboard::widgets.stats', compact('widget', 'widgetSetting'))->render(),
         ];
 
+        // dd($widgets);
         return $widgets;
     }
 
