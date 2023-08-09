@@ -58,7 +58,7 @@ class PropertyController extends BaseController
             'author_type' => Account::class,
         ]);
 
-        dd($request->all());
+        // dd($request->all());
         $property = $this->propertyRepository->getModel();
         $property = $property->fill($request->input());
         $property->moderation_status = $request->input('moderation_status');

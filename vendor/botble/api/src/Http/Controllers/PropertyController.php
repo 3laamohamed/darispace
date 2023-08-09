@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Botble\Api\Http\Requests\AccountPropertyRequest;
 use Botble\Api\Http\Resources\PropertyResource;
 use Botble\Base\Http\Responses\BaseHttpResponse;
+use Botble\Base\Supports\Helper;
 use Botble\Location\Models\State;
 use Botble\Media\Models\MediaFile;
 use Botble\RealEstate\Enums\ModerationStatusEnum;
@@ -72,6 +73,7 @@ class PropertyController extends Controller
     public function getProperty($id , BaseHttpResponse $response)
     {
         $property = Property::find($id);
+        Helper::handleViewCount($property, 'viewed_property');
         return $response->setData(new PropertyResource($property));
     }
     public function categories(BaseHttpResponse $response)
