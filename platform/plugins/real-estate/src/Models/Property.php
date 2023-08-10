@@ -101,7 +101,9 @@ class Property extends BaseModel
     {
         try {
             if ($value === '[null]') {
-                return [];
+                return [
+                    RvMedia::getImageUrl(theme_option('logo'))
+                ];
             }
 
             $images = json_decode((string)$value, true);
@@ -112,9 +114,9 @@ class Property extends BaseModel
 
             // dd($images);
             // if(is_array($images)){
-                return $images ?: [];
+                return $images ?: [RvMedia::getImageUrl(theme_option('logo'))];
             // }
-            return [];
+            return [RvMedia::getImageUrl(theme_option('logo'))];
         } catch (Exception) {
             return [];
         }
