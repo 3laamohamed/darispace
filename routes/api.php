@@ -18,6 +18,14 @@ Route::group(
         'prefix' => 'v1',
     ], function(){
 
+        Route::get('app/info', function(){
+            return response()->json([
+                'ios_version'=>'v1',
+                'android_version'=>'v1',
+                'force_update'=>true,
+            ]);
+        });
+
         Route::group(
             [
                 'prefix' => 'auth',

@@ -89,6 +89,10 @@ class Project extends BaseModel
     // {
     //     return $this->belongsTo(City::class,'city_id');
     // }
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class)->withDefault();
+    }
     public function getImagesAttribute($value): array
     {
         try {

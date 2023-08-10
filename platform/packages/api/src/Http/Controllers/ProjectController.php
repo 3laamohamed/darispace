@@ -48,6 +48,8 @@ class ProjectController extends Controller
     public function getProject($id , BaseHttpResponse $response)
     {
         $project = Project::find($id);
+        Helper::handleViewCount($project, 'viewed_project');
+
         return $response->setData(new ProjectResource($project));
     }
 
