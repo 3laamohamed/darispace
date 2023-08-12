@@ -20,8 +20,8 @@ Route::group(
 
         Route::get('app/info', function(){
             return response()->json([
-                'ios_version'=>'v1',
-                'android_version'=>'v1',
+                'ios_version'=>1.0,
+                'android_version'=>1.0,
                 'force_update'=>true,
             ]);
         });
