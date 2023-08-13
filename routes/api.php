@@ -23,6 +23,8 @@ Route::group(
                 'ios_version'=>1.0,
                 'android_version'=>1.0,
                 'force_update'=>true,
+                "google_play_link"=>"https://play.google.com/store/apps/details?id=com.darispace.arabcoders",
+                "apple_store_link"=>""
             ]);
         });
 

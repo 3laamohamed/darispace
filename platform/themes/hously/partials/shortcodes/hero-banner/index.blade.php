@@ -37,10 +37,10 @@
                                 </a> --}}
 
                                 <!-- Google Play button -->
-                                <a href="https://play.google.com/store/apps/details?id=com.darispace.arabcoders" target="_blank" class="market-btn google-btn" role="button">
+                                {{-- <a href="https://play.google.com/store/apps/details?id=com.darispace.arabcoders" target="_blank" class="market-btn google-btn" role="button">
                                     <span class="market-button-subtitle">حمل التطبيق على</span>
                                     <span class="market-button-title">Google Play</span>
-                                </a>
+                                </a> --}}
 
                                 <!-- Windows store button -->
                                 {{-- <a href="#" target="_blank" class="market-btn windows-btn" role="button">
