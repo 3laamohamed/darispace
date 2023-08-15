@@ -3,6 +3,7 @@
 namespace Botble\RealEstate\Tables;
 
 use BaseHelper;
+use Botble\Location\Models\City;
 use Botble\RealEstate\Enums\ModerationStatusEnum;
 use Botble\RealEstate\Enums\PropertyStatusEnum;
 use Botble\RealEstate\Exports\PropertyExport;
@@ -127,6 +128,7 @@ class PropertyTable extends TableAbstract
 
     public function getBulkChanges(): array
     {
+        // dd(City::pluck('name','id'));
         return [
             'name' => [
                 'title' => trans('core/base::tables.name'),
@@ -138,6 +140,12 @@ class PropertyTable extends TableAbstract
                 'type' => 'select',
                 'choices' => PropertyStatusEnum::labels(),
                 'validate' => 'required|' . Rule::in(PropertyStatusEnum::values()),
+            ],
+            'city_id' => [
+                'title' => trans('core/base::tables.city'),
+                'type' => 'select',
+                'choices' => City::pluck('name','id')->toArray(),
+                // 'validate' => 'required|' . Rule::in(City::pluck('id')),
             ],
             'moderation_status' => [
                 'title' => trans('plugins/real-estate::property.moderation_status'),
