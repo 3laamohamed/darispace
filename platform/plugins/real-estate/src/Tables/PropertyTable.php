@@ -142,10 +142,10 @@ class PropertyTable extends TableAbstract
                 'validate' => 'required|' . Rule::in(PropertyStatusEnum::values()),
             ],
             'city_id' => [
-                'title' => trans('core/base::tables.city'),
+                'title' => trans('المدينة'),
                 'type' => 'select',
                 'choices' => City::pluck('name','id')->toArray(),
-                // 'validate' => 'required|' . Rule::in(City::pluck('id')),
+                'validate' => 'required|' . Rule::in(City::pluck('id')->toArray()),
             ],
             'moderation_status' => [
                 'title' => trans('plugins/real-estate::property.moderation_status'),
