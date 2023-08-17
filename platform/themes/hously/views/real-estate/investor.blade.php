@@ -1,6 +1,7 @@
 @php
     Theme::set('navStyle', 'light');
     $avatar = $investor->image ? RvMedia::getImageUrl($investor->image, 'thumb') : $investor->image;
+    $projects=$projects->where('status','!=','not_available');
 @endphp
 
 {!! Theme::partial('breadcrumb') !!}
@@ -18,7 +19,7 @@
                 <li>
                     <i class="mr-1 text-xl mdi mdi-home-outline"></i>
                     <span>
-                        @php($projectsCount = $investor->projects->count())
+                        @php($projectsCount = $investor->projects->where('status','!=','not_available')->count())
                         @if($projectsCount === 1)
                             {{ __(':count project', ['count' => number_format($projectsCount)]) }}
                         @else

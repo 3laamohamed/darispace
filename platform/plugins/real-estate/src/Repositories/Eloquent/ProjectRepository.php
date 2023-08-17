@@ -147,7 +147,8 @@ class ProjectRepository extends RepositoriesAbstract implements ProjectInterface
         if ($filters['city_id']) {
             $this->model = $this->model->where('re_projects.city_id', $filters['city_id']);
         }else  if ($filters['investor_id']) {
-            $this->model = $this->model->where('investor_id', $filters['investor_id']);
+            $this->model = $this->model->where('investor_id', (int)$filters['investor_id']);
+            // dd($this->model->get());
         }  elseif ($filters['location']) {
             $locationData = explode(',', $filters['location']);
 
@@ -238,6 +239,8 @@ class ProjectRepository extends RepositoriesAbstract implements ProjectInterface
                     });
             }
         }
+
+        // dd($this->model->get());
 
         return $this->advancedGet($params);
     }
