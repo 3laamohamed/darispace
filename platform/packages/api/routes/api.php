@@ -29,9 +29,9 @@ Route::group([
 
         Route::post('review/{slug}', [ReviewController::class, 'store']);
 
-        Route::post('contact', [PublicController::class, 'postSendContact']);
 
     });
+    Route::post('contact', [PublicController::class, 'postSendContact']);
 
     Route::get('/index', 'ApiController@indexR');
     Route::get('/test', 'ApiController@test');
