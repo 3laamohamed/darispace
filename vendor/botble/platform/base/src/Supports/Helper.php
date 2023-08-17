@@ -24,18 +24,21 @@ class Helper
 
     public static function handleViewCount(Eloquent $object, string $sessionName): bool
     {
-        if (! array_key_exists($object->id, session()->get($sessionName, []))) {
-            try {
-                $object->increment('views');
-                session()->put($sessionName . '.' . $object->id, time());
+        $object->increment('views');
+        return true;
 
-                return true;
-            } catch (Exception) {
-                return false;
-            }
-        }
+        // if (! array_key_exists($object->id, session()->get($sessionName, []))) {
+        //     try {
+        //         $object->increment('views');
+        //         session()->put($sessionName . '.' . $object->id, time());
 
-        return false;
+        //         return true;
+        //     } catch (Exception) {
+        //         return false;
+        //     }
+        // }
+
+        // return false;
     }
 
     public static function formatLog(array $input, string $line = '', string $function = '', string $class = ''): array
