@@ -31,7 +31,8 @@ class ForgotPasswordController extends Controller
 
             return response([
                 "status"=>true,
-                'message' => trans('passwords.sent')
+                "code"=>$data['code'],
+                'message' => trans('passwords.sentPhone')
             ], 200);
 
         } catch (\Throwable $th) {

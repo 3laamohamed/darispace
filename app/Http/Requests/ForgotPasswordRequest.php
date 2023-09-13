@@ -26,7 +26,7 @@ class ForgotPasswordRequest  extends BaseRequest
         switch (request()->segment(count(request()->segments()))) {
             case 'forgot':
                 $rules = [
-                    'phone' => 'required|exists:re_id="widget_analytics_general",phone',
+                    'phone' => 'required|exists:re_accounts,phone',
                 ];
                 break;
 
