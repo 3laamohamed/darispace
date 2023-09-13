@@ -19,6 +19,11 @@ class PropertyObserver
         //     $property->save();
 
         // }
+        if($property->moderation_status != 'approved'){
+            $property->moderation_status='approved';
+            $property->save();
+        }
+
     }
     /**
      * Handle the Property "created" event.
