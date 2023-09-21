@@ -2,6 +2,7 @@
 
 use Botble\Shortcode\Shortcode;
 use Illuminate\Support\HtmlString;
+use Twilio\Rest\Client;
 
 if (! function_exists('shortcode')) {
     function shortcode(): Shortcode
@@ -32,12 +33,13 @@ if (! function_exists('generate_shortcode')) {
 }
 
 if (! function_exists('sendMessage')) {
-    function sendMessage(string $recipient,$booking)
+    function sendMessage(string $recipient,$code,$message=null)
     {
         try {
 
             // $message='testMessage';
-            $message = "تم ارسال طلب حجز جديد يمكنك عرض تفاصيل الطلب او تحميله من هذا الرابط : ".asset('/admin/module/report/booking/email_preview/'.$booking->id);
+            if(!$message)
+                $message = "رمز تعريفك الخاص : ".$code;
             $sid    = getenv("TWILIO_AUTH_SID");
             $token  = getenv("TWILIO_AUTH_TOKEN");
             $wa_from= getenv("TWILIO_WHATSAPP_FROM");
