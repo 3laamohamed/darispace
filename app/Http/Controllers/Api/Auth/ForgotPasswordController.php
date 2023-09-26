@@ -23,7 +23,7 @@ class ForgotPasswordController extends Controller
             $data['phone'] = $request->phone;
             $data['code'] = mt_rand(1000, 9999);
 
-            sendMessage($request->phone,$data['code']);
+            // sendMessage($request->phone,$data['code']);
             // Create a new code
             $codeData = ResetCodePassword::create($data);
 
@@ -32,7 +32,7 @@ class ForgotPasswordController extends Controller
 
             return response([
                 "status"=>true,
-                // "code"=>$data['code'],
+                "code"=>$data['code'],
                 'message' => trans('passwords.sentPhone')
             ], 200);
 
