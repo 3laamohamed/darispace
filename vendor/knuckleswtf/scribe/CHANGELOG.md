@@ -12,6 +12,53 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Removed
 
+# 4.24.0 (16 September 2023)
+## Added
+- Support dependency injection in FormRequests ([84078358ce](https://github.com/knuckleswtf/scribe/commit/84078358ce32ff0656a9ab03f062e952f721f1a2))
+- Include `auth.extra_info` in OpenAPI security scheme ([#727](https://github.com/knuckleswtf/scribe/pull/727))
+- Support dynamic base URL ([#723](https://github.com/knuckleswtf/scribe/pull/723))
+
+## Fixed
+- Generate proper sample for array of objects ([#720](https://github.com/knuckleswtf/scribe/pull/720))
+
+# 4.23.1 (25 August 2023)
+## Fixed
+- Break in attributes due to enum support ([4c49e81e0](https://github.com/knuckleswtf/scribe/commit/4c49e81e0a6f4a257c3945a139b9a3bf35d85b2b))
+
+# 4.23.0 (24 August 2023)
+## Added
+- Support for enums: you can now specify the allowed values of a parameter ([#713](https://github.com/knuckleswtf/scribe/pull/713))
+
+## Modified
+- Exclude Authorization header from generated OpenAPI spec, per spec ([#714](https://github.com/knuckleswtf/scribe/pull/714))
+
+## Fixed
+- Improve endpointId generation ([#700](https://github.com/knuckleswtf/scribe/pull/700))
+- Improve empty checks in OpenAPI spec generation ([#712](https://github.com/knuckleswtf/scribe/pull/712))
+- Don't export auth.use_value to Postman ([6a9d51b3a2](https://github.com/knuckleswtf/scribe/commit/6a9d51b3a215a89e8b8af47f796ffaa10993c171))
+
+# 4.22.0 (1 July 2023)
+## Added
+- Make included package attributes extensible ([#680](https://github.com/knuckleswtf/scribe/pull/680))
+
+## Fixed
+- Ensure example code supports multipart/form-data without files ([#685](https://github.com/knuckleswtf/scribe/pull/685))
+- Fix path traversal on Laravel 10 ([#686](https://github.com/knuckleswtf/scribe/pull/686))
+- Properly support floats in docs UI ([#693](https://github.com/knuckleswtf/scribe/pull/693))
+- Properly normalise URLs with multi-word Eloquent parameters ([#670](https://github.com/knuckleswtf/scribe/pull/670))
+- Also show empty array query parameters in Postman ([#691](https://github.com/knuckleswtf/scribe/pull/691))
+
+
+# 4.21.2 (5 June 2023)
+## Fixed
+- Typehint interface in CustomTranslationsLoader for maximum compatibility ([#679](https://github.com/knuckleswtf/scribe/pull/679))
+
+
+# 4.21.1 (3 June 2023)
+## Fixed
+- Load translations on demand to get around false negative for `runningInConsole()` ([963340f2](https://github.com/knuckleswtf/scribe/commit/963340f2bea654bb267286f807bcdf15b699d06e))
+- Correctly set pagination data on collections in `#[ResponseFromApiResource]` ([d53776bee](https://github.com/knuckleswtf/scribe/commit/d53776bee25daff8f0070e49a32b127b4de21c9c))
+
 # 4.21.0 (29 May 2023)
 ## Added
 - API resources: Infer model name from `@mixin` ([f0ed9565](https://github.com/knuckleswtf/scribe/commit/f0ed95653b401b188e76e6ba9057406710f2cc2b))

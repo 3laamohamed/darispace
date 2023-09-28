@@ -56,6 +56,9 @@ class AuthenticationController extends Controller
     {
         $request->merge(['password' => Hash::make($request->input('password'))]);
 
+        if(!$request->email){
+        $request->merge(['email' => $request->input('first_name') . $request->input('phone') . '@darispace.com']);
+        }
         $request->merge(['name' => $request->input('first_name') . ' ' . $request->input('last_name')]);
 
         $user = ApiHelper::newModel()->create($request->only([

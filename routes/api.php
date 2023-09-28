@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\Api\Auth\ForgotPasswordController;
+use App\Http\Controllers\Api\Auth\VerifyAccountController;
 
 Route::group(
     [
@@ -37,5 +38,9 @@ Route::group(
                 Route::post('password/forgot',  [ForgotPasswordController::class,'forgot']);
                 Route::post('password/code/check', [ForgotPasswordController::class,'checkCode']);
                 Route::post('password/reset', [ForgotPasswordController::class,'resetPassword']);
+
+                Route::post('verify/send-code', [VerifyAccountController::class, 'sendCode']);
+                Route::post('verify/account', [VerifyAccountController::class, 'verifyAccount']);
+
         });
     });

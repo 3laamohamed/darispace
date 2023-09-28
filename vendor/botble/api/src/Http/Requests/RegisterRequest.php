@@ -12,10 +12,10 @@ class RegisterRequest extends Request
         return [
             'first_name' => 'required|max:120|min:2',
             'last_name' => 'required|max:120|min:2',
-            'email' => 'required|max:60|min:6|email|unique:' . ApiHelper::getTable(),
+            'email' => 'nullable|max:60|min:6|email|unique:' . ApiHelper::getTable(),
             'phone' => 'required|max:60|min:6|unique:' . ApiHelper::getTable(),
-            'username' => 'required|max:60|min:3|unique:' . ApiHelper::getTable(),
-            'password' => 'required|min:6|confirmed',
+            'username' => 'nullable|max:60|min:3|unique:' . ApiHelper::getTable(),
+            'password' => 'required|min:6',
         ];
     }
 }
