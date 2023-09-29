@@ -183,6 +183,53 @@
                 </div>
             </div>
 
+
+            <div class="flexbox-annotated-section">
+
+                <div class="flexbox-annotated-section-annotation">
+                    <div class="annotated-section-title pd-all-20">
+                        <h2>{{ __('App Settings') }}</h2>
+                    </div>
+                    <div class="annotated-section-description pd-all-20 p-none-t">
+                        <p class="color-note">{{ __('Application settings') }}</p>
+                    </div>
+                </div>
+
+                <div class="flexbox-annotated-section-content">
+                    <div class="wrapper-content pd-all-20">
+
+
+                        <div class="form-group mb-3">
+                            <label class="text-title-field" for="ios_version">{{  __('IOS Version') }}</label>
+                            <input data-counter="120" type="text" class="next-input" name="ios_version" id="ios_version" value="{{ setting('ios_version') }}">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="text-title-field" for="android_version">{{  __('android Version') }}</label>
+                            <input data-counter="120" type="text" class="next-input" name="android_version" id="android_version" value="{{ setting('android_version') }}">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="text-title-field" for="ios_link">{{  __('IOS Link') }}</label>
+                            <input data-counter="120" type="text" class="next-input" name="ios_link" id="ios_link" value="{{ setting('ios_link') }}">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label class="text-title-field" for="android_link">{{  __('android Link') }}</label>
+                            <input data-counter="120" type="text" class="next-input" name="android_link" id="android_link" value="{{ setting('android_link') }}">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <input type="hidden" name="force_update" value="0">
+                            <label>
+                                <input type="checkbox" value="1" @checked(setting('force_update')) name="force_update">
+                                {{ __('Force Update') }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="flexbox-annotated-section">
                 <div class="flexbox-annotated-section-annotation">
                     <div class="annotated-section-title pd-all-20">

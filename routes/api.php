@@ -21,11 +21,11 @@ Route::group(
 
         Route::get('app/info', function(){
             return response()->json([
-                'ios_version'=>1.0,
-                'android_version'=>1.0,
-                'force_update'=>true,
-                "google_play_link"=>"https://play.google.com/store/apps/details?id=com.darispace.arabcoders",
-                "apple_store_link"=>""
+                'ios_version'=>(int)setting('android_version'),
+                'android_version'=>(int)setting('android_version'),
+                'force_update'=>(boolean)setting('force_update'),
+                "google_play_link"=>setting('android_link'),
+                "apple_store_link"=>setting('ios_link')
             ]);
         });
 
