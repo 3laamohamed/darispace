@@ -38,7 +38,11 @@ class InvestorController extends BaseController
 
     public function store(InvestorRequest $request, BaseHttpResponse $response)
     {
-        $investor = $this->investorRepository->createOrUpdate($request->input());
+        $request_data=$request->except('image');
+        if(isset($request->image[1])){
+            $request_data['image']=isset($request->image[1]);
+        }
+        $investor = $this->investorRepository->createOrUpdate($request_data);
 
         event(new CreatedContentEvent(INVESTOR_MODULE_SCREEN_NAME, $request, $investor));
 

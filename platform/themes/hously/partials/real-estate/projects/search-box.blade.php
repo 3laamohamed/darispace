@@ -1,4 +1,4 @@
-<form action="{{ $actionUrl ?? route('public.projects') }}" data-ajax-url="{{ $ajaxUrl ?? route('public.projects') }}" class="search-filter">
+<!-- <form action="{{ $actionUrl ?? route('public.projects') }}" data-ajax-url="{{ $ajaxUrl ?? route('public.projects') }}" class="search-filter">
     {{-- @php
         dd( RealestateHelper::getProjectsListPageUrl());
     @endphp --}}
@@ -64,3 +64,4 @@
         </div>
     </div>
 </form>
+-->
