@@ -31,10 +31,10 @@ class InvestorForm extends FormAbstract
                     'with-short-code' => true,
                 ],
             ])
-            ->add('image[]', 'mediaImages', [
+            ->add('image', 'mediaImage', [
                 'label' => trans('plugins/real-estate::property.form.images'),
                 'label_attr' => ['class' => 'control-label required'],
-                'values' => $this->getModel()->id ? $this->getModel()->image : [],
+                'values' => $this->getModel()->id ? $this->getModel()->image : null,
             ])
             ->add('status', 'customSelect', [
                 'label' => trans('core/base::tables.status'),

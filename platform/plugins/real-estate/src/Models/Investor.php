@@ -5,6 +5,7 @@ namespace Botble\RealEstate\Models;
 use Botble\Base\Enums\BaseStatusEnum;
 use Botble\Base\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Arr;
 
 class Investor extends BaseModel
 {
@@ -25,4 +26,9 @@ class Investor extends BaseModel
     {
         return $this->hasMany(Project::class, 'investor_id');
     }
+
+    // public function getImageAttribute(): ?string
+    // {
+    //     return $this->images ?? null;
+    // }
 }
