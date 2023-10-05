@@ -13,6 +13,7 @@ use Botble\RealEstate\Models\Category;
 use Botble\RealEstate\Models\Investor;
 use Botble\RealEstate\Models\Project;
 use Botble\RealEstate\Supports\RealEstateHelper;
+use Botble\Base\Supports\Helper;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
