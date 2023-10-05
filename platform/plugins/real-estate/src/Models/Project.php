@@ -124,7 +124,7 @@ class Project extends BaseModel
 
     public function features(): BelongsToMany
     {
-        return $this->belongsToMany(Feature::class, 're_project_features', 'project_id', 'feature_id');
+        return $this->belongsToMany(Feature::class, 're_project_features', 'project_id', 'feature_id')->select('id','name');
     }
 
     public function facilities(): BelongsToMany

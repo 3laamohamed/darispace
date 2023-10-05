@@ -51,6 +51,7 @@ class ProjectResource extends JsonResource
             'categories' => $this->categories,
             'reviews' => $this->reviews,
             'investor' => $this->investor,
+            'features' => $this->features,
         ];
     }
 }
