@@ -21,7 +21,7 @@ Route::group(
 
         Route::get('app/info', function(){
             return response()->json([
-                'ios_version'=>(int)setting('android_version'),
+                'ios_version'=>(int)setting('ios_version'),
                 'android_version'=>(int)setting('android_version'),
                 'force_update'=>(boolean)setting('force_update'),
                 "google_play_link"=>setting('android_link'),
