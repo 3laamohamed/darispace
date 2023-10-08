@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('re_accounts', function (Blueprint $table) {
-            $table->string('type')->after('id')->default('property_owner');
+            // $table->string('type')->after('id')->default('property_owner');
         });
     }
 
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('re_properties', function (Blueprint $table) {
+        Schema::table('re_accounts', function (Blueprint $table) {
             //
         });
     }

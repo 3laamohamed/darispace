@@ -47,6 +47,7 @@ class Account extends BaseModel implements
         'first_name',
         'last_name',
         'type',
+        'website',
         'username',
         'email',
         'password',

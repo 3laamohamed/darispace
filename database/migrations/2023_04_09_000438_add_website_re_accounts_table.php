@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('re_properties', function (Blueprint $table) {
-            // $table->softDeletes();
+        Schema::table('re_accounts', function (Blueprint $table) {
+            $table->string('website')->after('type')->nullable();
         });
     }
 
@@ -25,7 +25,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('re_properties', function (Blueprint $table) {
+        Schema::table('re_accounts', function (Blueprint $table) {
             //
         });
     }
