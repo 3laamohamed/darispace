@@ -137,7 +137,8 @@ class ProfileController extends Controller
     public function updatePassword(Request $request, BaseHttpResponse $response)
     {
         $validator = Validator::make($request->input(), [
-            'password' => 'required|min:6|max:60',
+            'old_password' => 'required',
+            'password' => 'required|min:6|max:60|confirmed',
         ]);
 
         if ($validator->fails()) {
@@ -147,6 +148,13 @@ class ProfileController extends Controller
                 ->setMessage(__('Data invalid!') . ' ' . implode(' ', $validator->errors()->all()) . '.');
         }
 
+        $check = Hash::check($request->old_password, $request->user()->password);
+        if(!$check){
+            return $response
+            ->setError()
+            ->setCode(422)
+            ->setMessage(__('Old Password incorect!') );
+        }
         $request->user()->update([
             'password' => Hash::make($request->input('password')),
         ]);
