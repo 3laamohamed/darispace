@@ -10,7 +10,7 @@ class ContactRequest extends Request
     {
         $rules = [
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'nullable|email',
             // 'content' => 'required',
         ];
 
