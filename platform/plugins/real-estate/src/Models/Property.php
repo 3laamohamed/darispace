@@ -54,6 +54,11 @@ class Property extends BaseModel
         'longitude',
         'payment_type',
         'real_estate_finance',
+        'number_garages',
+        'floor_no',
+        'invisible_notes',
+        'elevator',
+        'available_from',
     ];
 
     protected $casts = [
