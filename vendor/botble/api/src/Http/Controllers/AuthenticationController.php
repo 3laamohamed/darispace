@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Botble\Base\Http\Responses\BaseHttpResponse;
 use Botble\Api\Http\Requests\LoginRequest;
 use Botble\Api\Http\Requests\RegisterRequest;
+use App\Models\ResetCodePassword;
 use Botble\Api\Http\Resources\UserResource;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -84,13 +85,23 @@ class AuthenticationController extends Controller
 
         $user->save();
 
-            $token = $user->createToken($request->input('token_name', 'Personal Access Token'));
+            // $token = $user->createToken($request->input('token_name', 'Personal Access Token'));
 
-            return $response
-                ->setData([
-                    'token' => $token->plainTextToken,
-                    'user' => new UserResource($user),
-            ]);
+            // return $response
+            //     ->setData([
+            //         'token' => $token->plainTextToken,
+            //         'user' => new UserResource($user),
+            // ]);
+
+            // Delete all old code that user send before.
+            ResetCodePassword::where('phone', $request->phone)->delete();
+
+            // Generate random code
+            $data['phone'] = $request->phone;
+            $data['code'] = mt_rand(1000, 9999);
+            $codeData = ResetCodePassword::create($data);
+
+            sendMessage($request->phone,$data['code']);
 
 
         return $response
@@ -122,6 +133,14 @@ class AuthenticationController extends Controller
             'phone' => $request->input('email'),
             'password' => $request->input('password'),
         ])) {
+
+            if (!Auth::guard(ApiHelper::guard())->user()->phone_verified_at) {
+                return $response
+                        ->setError()
+                        ->setCode(422)
+                        ->setMessage(__('Phone Not Verified Please Verify Your Phone !'));
+            }
+
             $token = $request->user(ApiHelper::guard())->createToken($request->input('token_name', 'Personal Access Token'));
 
             return $response

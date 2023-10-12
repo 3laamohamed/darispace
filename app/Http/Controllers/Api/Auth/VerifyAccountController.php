@@ -13,6 +13,7 @@ use Botble\Base\Http\Responses\BaseHttpResponse;
 use Illuminate\Support\Facades\Mail;
 use Botble\RealEstate\Models\Account;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use ApiHelper;
 
 class VerifyAccountController extends Controller
@@ -134,7 +135,7 @@ class VerifyAccountController extends Controller
             return $response
                 ->setData([
                     'token' => $token->plainTextToken,
-                    'user' => new UserResource(Auth::guard(ApiHelper::guard())->user()),
+                    'user' => new UserResource($user),
             ]);
             return response([
                 "status" => true,

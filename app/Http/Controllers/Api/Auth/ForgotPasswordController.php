@@ -7,6 +7,8 @@ use App\Http\Requests\ForgotPasswordRequest;
 use App\Mail\SendCodeResetPassword;
 use App\Models\ResetCodePassword;
 use App\Models\User;
+use Botble\Base\Http\Responses\BaseHttpResponse;
+use Botble\Api\Http\Resources\UserResource;
 use Botble\RealEstate\Models\Account;
 use Illuminate\Support\Facades\Mail;
 
@@ -74,7 +76,7 @@ class ForgotPasswordController extends Controller
         }
     }//end check method
 
-    public function resetPassword(ForgotPasswordRequest $request)
+    public function resetPassword(ForgotPasswordRequest $request, BaseHttpResponse $response)
     {
         try {
             // find the code
@@ -95,10 +97,19 @@ class ForgotPasswordController extends Controller
             // delete current code
             $passwordReset->delete();
 
-            return response([
-                'status' => true,
-                'message' =>'password has been successfully reset'
-            ], 200);
+            $token = $user->createToken($request->input('token_name', 'Personal Access Token'));
+
+            return $response
+                ->setData([
+                    'token' => $token->plainTextToken,
+                    'message' =>'password has been successfully reset',
+                    'user' => new UserResource($user),
+            ]);
+
+            // return response([
+            //     'status' => true,
+            //     'message' =>'password has been successfully reset'
+            // ], 200);
 
         } catch (\Throwable $th) {
             return response()->json([
