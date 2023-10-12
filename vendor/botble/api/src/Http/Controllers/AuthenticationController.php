@@ -135,8 +135,9 @@ class AuthenticationController extends Controller
         ])) {
 
             if (!Auth::guard(ApiHelper::guard())->user()->phone_verified_at) {
-                return $response
-                        ->setError()
+                return $response->setData([
+                            'verified' => false]
+                        )->setError()
                         ->setCode(422)
                         ->setMessage(__('Phone Not Verified Please Verify Your Phone !'));
             }
