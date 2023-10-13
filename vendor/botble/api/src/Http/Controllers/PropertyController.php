@@ -142,7 +142,7 @@ class PropertyController extends Controller
             $images=[];
             foreach ($request->images as $key => $img) {
                 $file = $img;
-                $ext=$file->extension();
+                $ext=@$file->extension();
                 $time = time().$key;
                 $imageName = $time.'-150x150.'.$ext;
                 $imagePath = public_path(). '/storage/accounts/'.str_replace(' ','',auth()->user()->name);
@@ -345,11 +345,11 @@ class PropertyController extends Controller
             $property = $this->propertyRepository->findOrFail($id);
 
             // if($property->expire_date <= \Carbon::now()){
-            if(isset($property->duration) && $property->created_at >= now()->subDays($property->duration)){
-                return $response
-                ->setError()
-                ->setMessage(__("You Can't Delete this Property Before Expire Date" ));
-            }
+            // if(isset($property->duration) && $property->created_at >= now()->subDays($property->duration)){
+            //     return $response
+            //     ->setError()
+            //     ->setMessage(__("You Can't Delete this Property Before Expire Date" ));
+            // }
             $property->features()->detach();
             $this->propertyRepository->delete($property);
 
