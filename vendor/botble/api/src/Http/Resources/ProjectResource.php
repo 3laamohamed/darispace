@@ -32,6 +32,8 @@ class ProjectResource extends JsonResource
             'number_floors' => $this->number_floor,
             'number_flats' => $this->number_flat,
             'square' => $this->max_space,
+            'min_price' => $this->min_price,
+            'max_price' => $this->max_price,
             'year_of_delivery' => $this->year_of_delivery,
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
