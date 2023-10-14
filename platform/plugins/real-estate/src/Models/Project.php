@@ -104,7 +104,9 @@ class Project extends BaseModel
     {
         try {
             if ($value === '[null]') {
-                return [];
+                return [
+                    RvMedia::getImageUrl(theme_option('logo'))
+                ];
             }
 
             $images = json_decode((string)$value, true);
@@ -113,7 +115,11 @@ class Project extends BaseModel
                 $images = array_filter($images);
             }
 
-            return $images ?: [];
+            // dd($images);
+            // if(is_array($images)){
+                return $images ?: [RvMedia::getImageUrl(theme_option('logo'))];
+            // }
+            return [RvMedia::getImageUrl(theme_option('logo'))];
         } catch (Exception) {
             return [];
         }
