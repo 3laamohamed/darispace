@@ -31,7 +31,7 @@ class ProjectResource extends JsonResource
             'city_id' => $this->city_id,
             'number_bedroom' => $this->number_bedroom,
             'number_bathroom' => $this->number_bathroom,
-            'square' => $this->square,
+            'square' => $this->max_space,
             'square_text' => $this->square_text,
             'type' => $this->type,
             'type_text' => $this->type_html,
