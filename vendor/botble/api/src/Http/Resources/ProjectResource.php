@@ -23,6 +23,7 @@ class ProjectResource extends JsonResource
             'content' => strip_tags($this->content),
             'image' => $this->image_small,
             'image_thumb' => $this->image_thumb,
+            'image_base_url' => asset('storage/'),
             'images' => $this->images,
             'price_html' => $this->price_html,
             'city_name' => $this->city->name??"",

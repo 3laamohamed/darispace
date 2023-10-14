@@ -18,7 +18,7 @@ class InvestorResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'disc' => $this->disc,
-            'image' => $this->image,
+            'image' => asset('storage/'.$this->image),
             'status' => $this->status,
             'created_at' => $this->created_at,
         ];

@@ -288,6 +288,10 @@ class PropertyController extends Controller
         if($request->images){
             foreach ($request->images as $key => $img) {
                 $file = $img;
+                // if(!@$file->extension()){
+                //     dd('dfdf');
+                //     continue;
+                // }
                 $ext=$file->extension();
                 $time = time().$key;
                 $imageName = $time.'-150x150.'.$ext;
