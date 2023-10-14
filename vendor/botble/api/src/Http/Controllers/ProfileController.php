@@ -104,8 +104,8 @@ class ProfileController extends Controller
         }
 
         try {
-            if($request->phone != $user->phone){
-                
+            if($request->phone != $request->user()->phone){
+                $request_data['phone_verified_at']=null;
             }
             $request_data=$request->except('password','avatar');
             if($request->password){
