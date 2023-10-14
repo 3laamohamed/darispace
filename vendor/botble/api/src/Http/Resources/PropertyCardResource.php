@@ -19,6 +19,14 @@ class PropertyCardResource extends JsonResource
             'name' => $this->name,
             'slug' => $this->slug,
             'image' => $this->image_small,
+            'number_bathroom' => $this->number_bathroom,
+            'square' => $this->square,
+            'number_bedroom' => $this->number_bedroom,
+            'city_name' => $this->city_name,
+            'price' => $this->price,
+            'latitude' => $this->latitude,
+            'longitude' => $this->longitude,
+            'author' => $this->author,
         ];
     }
 }
