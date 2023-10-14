@@ -130,7 +130,7 @@ class Property extends BaseModel
 
     public function relatedProperties()
     {
-        $properties= Property::where('city_id',$this->city_id)->where('id','!=',$this->id)->select('id','name','images')->limit(6)->get();
+        $properties= Property::where('city_id',$this->city_id)->where('id','!=',$this->id)->limit(6)->get();
         return PropertyCardResource::collection($properties);
     }
 
