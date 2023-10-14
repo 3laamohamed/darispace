@@ -3,6 +3,7 @@
 namespace Botble\RealEstate\Models;
 
 use Botble\Base\Models\BaseModel;
+use Botble\Api\Http\Resources\ProjectCardResource;
 use Botble\Location\Models\City;
 use Botble\RealEstate\Enums\ProjectStatusEnum;
 use Exception;
@@ -83,6 +84,12 @@ class Project extends BaseModel
     public function property(): HasMany
     {
         return $this->hasMany(Property::class, 'project_id');
+    }
+
+    public function relatedProjects()
+    {
+        $projects= Project::where('city_id',$this->city_id)->where('id','!=',$this->id)->select('id','name','images')->limit(6)->get();
+        return ProjectCardResource::collection($projects);
     }
 
     // public function city()

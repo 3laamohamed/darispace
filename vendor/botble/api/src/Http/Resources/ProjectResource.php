@@ -49,8 +49,9 @@ class ProjectResource extends JsonResource
             'created_at' => $this->created_at,
             'categories' => $this->categories,
             'reviews' => $this->reviews,
-            'investor' => $this->investor,
+            'investor' =>new InvestorCardResource($this->investor),
             'features' => $this->features,
+            'relatedProjects' => $this->relatedProjects(),
         ];
     }
 }
