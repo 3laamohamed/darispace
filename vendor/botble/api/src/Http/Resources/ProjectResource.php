@@ -35,7 +35,7 @@ class ProjectResource extends JsonResource
             'year_of_delivery' => $this->year_of_delivery,
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
-            'status' => @$this->status->value,
+            'status' => @$this->status,
             'category_name' => $this->category_name,
             'investor_id' => $this->investor_id,
             'views' => $this->views,
