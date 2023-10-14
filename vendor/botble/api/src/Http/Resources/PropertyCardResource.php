@@ -4,7 +4,7 @@ namespace Botble\Api\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class InvestorCardResource extends JsonResource
+class PropertyCardResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,9 +17,8 @@ class InvestorCardResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'city_name' => $this->name,
-            'image' => asset('storage/'.$this->image),
-            'created_at' => $this->created_at,
+            'slug' => $this->slug,
+            'image' => $this->image_small,
         ];
     }
 }

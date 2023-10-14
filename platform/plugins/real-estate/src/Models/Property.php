@@ -3,6 +3,7 @@
 namespace Botble\RealEstate\Models;
 
 use Botble\Base\Models\BaseModel;
+use Botble\Api\Http\Resources\PropertyCardResource;
 use Botble\RealEstate\Enums\ModerationStatusEnum;
 use Botble\RealEstate\Enums\PropertyPeriodEnum;
 use Botble\RealEstate\Enums\PropertyStatusEnum;
@@ -126,6 +127,13 @@ class Property extends BaseModel
             return [];
         }
     }
+
+    public function relatedProperties()
+    {
+        $properties= Property::where('city_id',$this->city_id)->where('id','!=',$this->id)->select('id','name','images')->limit(6)->get();
+        return PropertyCardResource::collection($properties);
+    }
+
 
     public function getImageAttribute(): ?string
     {

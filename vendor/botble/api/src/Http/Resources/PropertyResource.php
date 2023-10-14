@@ -61,6 +61,7 @@ class PropertyResource extends JsonResource
             'facilities' => $this->facilities,
             'features' => $this->features,
             'author' => $this->author,
+            'relatedProperties' => $this->relatedProperties(),
         ];
     }
 }
