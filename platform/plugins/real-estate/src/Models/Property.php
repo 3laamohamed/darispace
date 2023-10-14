@@ -157,7 +157,7 @@ class Property extends BaseModel
 
     public function author(): MorphTo
     {
-        return $this->morphTo()->withDefault();
+        return $this->morphTo()->withDefault()->select('id','first_name','last_name');
     }
 
     public function getCategoryAttribute(): Category
