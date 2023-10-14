@@ -88,7 +88,7 @@ class ProfileController extends Controller
         $validator = Validator::make($request->input(), [
             'first_name' => 'nullable|max:120|min:2',
             'last_name' => 'nullable|max:120|min:2',
-            'phone' => 'nullable|max:15|min:8',
+            'phone' => 'nullable|max:15|min:8|unique:' . ApiHelper::getTable() . ',phone,' . $userId,
             'dob' => 'nullable|max:15|min:8',
             'gender' => 'nullable',
             'description' => 'nullable',
@@ -104,6 +104,9 @@ class ProfileController extends Controller
         }
 
         try {
+            if($request->phone != $user->phone){
+                
+            }
             $request_data=$request->except('password','avatar');
             if($request->password){
                 $request_data['password'] = Hash::make($request->input('password'));
