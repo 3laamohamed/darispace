@@ -78,7 +78,7 @@ class PropertyController extends Controller
     }
     public function categories(BaseHttpResponse $response)
     {
-        $categories=Category::get();
+        $categories=Category::withCount('properties')->get();
         return $response->setData($categories);
     }
 

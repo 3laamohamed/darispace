@@ -23,6 +23,7 @@ class PropertyCardResource extends JsonResource
             'square' => $this->square,
             'number_bedroom' => $this->number_bedroom,
             'city_name' => $this->city_name,
+            'type' => $this->type,
             'price' => $this->price,
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
