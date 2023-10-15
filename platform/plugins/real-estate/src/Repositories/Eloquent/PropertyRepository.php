@@ -229,6 +229,7 @@ class PropertyRepository extends RepositoriesAbstract implements PropertyInterfa
                 });
         }
 
+
         if ($filters['city_id']) {
             $this->model = $this->model->where('re_properties.city_id', $filters['city_id']);
         } elseif ($filters['location']) {
@@ -271,6 +272,14 @@ class PropertyRepository extends RepositoriesAbstract implements PropertyInterfa
             $this->model = $this->model
                 ->whereHas('categories', function (Builder $query) use ($categoryIds) {
                     $query->whereIn('category_id', $categoryIds);
+                });
+        }
+        if (count($filters['feature_ids'] ?? [])) {
+            $featureIds = $filters['feature_ids'];
+
+            $this->model = $this->model
+                ->whereHas('features', function (Builder $query) use ($featureIds) {
+                    $query->whereIn('id', $featureIds);
                 });
         }
 

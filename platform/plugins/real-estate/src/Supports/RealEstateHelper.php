@@ -213,9 +213,10 @@ class RealEstateHelper
             'sort_by' => 'nullable|string',
             'locations' => 'nullable|array',
             'category_ids' => 'nullable|array',
+            'feature_ids' => 'nullable|array',
         ]);
 
-        $filters['keyword'] = $request->input('k');
+        // $filters['keyword'] = $request->input('keyword');
 
         $params = array_merge([
             'paginate' => [
