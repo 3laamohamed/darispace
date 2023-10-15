@@ -24,6 +24,7 @@ class Contact extends BaseModel
         'project_type',
         'budget',
         'subject',
+        'square',
         'content',
         'status',
     ];
