@@ -135,6 +135,15 @@ class AuthenticationController extends Controller
         ])) {
 
             if (!Auth::guard(ApiHelper::guard())->user()->phone_verified_at) {
+                // Delete all old code that user send before.
+                // ResetCodePassword::where('phone', $request->email)->delete();
+
+                // // Generate random code
+                // $data['phone'] = $request->email;
+                // $data['code'] = mt_rand(1000, 9999);
+                // $codeData = ResetCodePassword::create($data);
+
+                // sendMessage($request->email,$data['code']);
                 return $response->setData([
                             'verified' => false]
                         )->setError()

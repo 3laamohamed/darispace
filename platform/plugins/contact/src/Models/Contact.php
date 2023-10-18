@@ -25,6 +25,9 @@ class Contact extends BaseModel
         'budget',
         'subject',
         'square',
+        'purchase_place',
+        'purpose_of_purchase',
+        'unit_type',
         'content',
         'status',
     ];
@@ -32,7 +35,7 @@ class Contact extends BaseModel
     protected $casts = [
         'status' => ContactStatusEnum::class,
         'purchase_during' => "array",
-        'project_type' => "array"
+        // 'project_type' => "array"
     ];
 
     public function replies(): HasMany

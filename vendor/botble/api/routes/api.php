@@ -55,7 +55,7 @@ Route::group([
     Route::post('properties/store','PropertyController@store')->middleware('auth:sanctum');
     Route::post('properties/update/{id}','PropertyController@update')->middleware('auth:sanctum');
     Route::delete('properties/delete/{id}','PropertyController@destroy')->middleware('auth:sanctum');
-    Route::get('properties/facilities_features','PropertyController@facilities_features')->middleware('auth:sanctum');
+    Route::get('properties/facilities_features','PropertyController@facilities_features');
     Route::get('properties/getUserProperties','PropertyController@getUserProperties')->middleware('auth:sanctum');
     Route::get('properties/filterSelections','PropertyController@filterSelections');
     Route::get('properties/categories','PropertyController@categories');
