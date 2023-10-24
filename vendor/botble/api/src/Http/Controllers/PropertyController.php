@@ -7,6 +7,7 @@ use Botble\Api\Http\Requests\AccountPropertyRequest;
 use Botble\Api\Http\Resources\PropertyResource;
 use Botble\Base\Http\Responses\BaseHttpResponse;
 use Botble\Base\Supports\Helper;
+use Botble\RealEstate\Enums\PropertyStatusEnum;
 use Botble\Location\Models\State;
 use Botble\Media\Models\MediaFile;
 use Botble\RealEstate\Enums\ModerationStatusEnum;
@@ -68,6 +69,18 @@ class PropertyController extends Controller
         $filters['states']=State::get();
         $filters['categories']=Category::get();
         return $response->setData($filters);
+    }
+
+    public function getStatuses(BaseHttpResponse $response)
+    {
+        $statuses=[];
+        
+        foreach (PropertyStatusEnum::values() as $key => $value) {
+            if($value=='not_available')
+                continue;
+            $statuses[]=$value;
+        }
+        return $response->setData($statuses);
     }
 
     public function getProperty($id , BaseHttpResponse $response)

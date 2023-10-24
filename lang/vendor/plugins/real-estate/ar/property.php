@@ -38,6 +38,13 @@ return [
         'renting' => 'الايجار',
         'rented' => 'مؤجر',
         'building' => 'مبنى',
+        'deluxe_finishing' => 'تشطيب ديلوكس',
+        'without_finishing' => 'بدون تشطيب',
+        'semi_finished' => 'نصف تشطيب',
+        'fully_finished' => 'تشطيب كامل',
+        'luxurious_finishing' => 'تشطيب لوكس',
+        'super_deluxe_finishing' => 'تشطيب سوبر لوكس',
+        'ultra_luxe_finishing' => 'تشطيب الترا لوكس',
     ],
     'types' => [
         'sale' => 'بيع',

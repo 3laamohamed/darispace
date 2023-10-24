@@ -63,6 +63,7 @@ Route::group([
     Route::get('properties/recentProperties','PropertyController@recentProperties');
     Route::get('property/{id}','PropertyController@getProperty');
     Route::get('properties/filter','PropertyController@filterProperties');
+    Route::get('properties/getStatuses','PropertyController@getStatuses');
 
     //countries
     Route::get('getCountries','CountryController@getCountries');
@@ -77,5 +78,5 @@ Route::group([
     //packages
     Route::get('packages','PackageController@getPackages')->middleware('auth:sanctum');
     Route::post('packages/subscribe','PackageController@ajaxSubscribePackage')->middleware('auth:sanctum');
-
+        
 });
