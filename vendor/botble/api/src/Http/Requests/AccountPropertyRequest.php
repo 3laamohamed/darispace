@@ -13,7 +13,7 @@ class AccountPropertyRequest extends BaseRequest
         return [
             'name' => 'required',
             // 'description' => 'max:350',
-            'content' => 'nullable',
+            'content' => 'required',
             'number_bedroom' => 'numeric|min:0|max:10000|nullable',
             'number_bathroom' => 'numeric|min:0|max:10000|nullable',
             'number_floor' => 'numeric|min:0|max:10000|nullable',
