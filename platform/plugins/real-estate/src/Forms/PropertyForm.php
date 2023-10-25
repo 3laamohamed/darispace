@@ -376,7 +376,7 @@ class PropertyForm extends FormAbstract
                     'class' => 'form-control select-search-full',
                 ],
                 'choices' => PropertyStatusEnum::labels(),
-                'selected' => (string)$this->model->status ?: PropertyStatusEnum::SELLING,
+                'selected' => (string)$this->model->status ?: PropertyStatusEnum::WITHOUT_FINISHING,
             ])
             ->add('moderation_status', 'customSelect', [
                 'label' => trans('plugins/real-estate::property.moderation_status'),
