@@ -56,7 +56,7 @@ class CountryController extends BaseController
     public function getCities(Request $request, BaseHttpResponse $response)
     {
         $params = [
-            'select' => ['cities.id', 'cities.name'],
+            'select' => ['cities.id', 'cities.name', 'cities.state_id'],
             'condition' => [
                 'cities.status' => BaseStatusEnum::PUBLISHED,
                 // 'cities.is_real_estate' => $request->is_real_estate,
