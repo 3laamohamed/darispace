@@ -40,6 +40,7 @@ Route::group([
     Route::get('projects','ProjectController@filterProjects');
     Route::get('projects/filterSelections','ProjectController@filterSelections');
     Route::get('project/{id}','ProjectController@getProject');
+    Route::get('projectBySlug/{slug}','ProjectController@getProjectBySlug');
     Route::get('projects/filter','ProjectController@filterProjects');
     Route::get('projects/getCities','ProjectController@getCities');
 

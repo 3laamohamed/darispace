@@ -13,8 +13,10 @@ use Botble\RealEstate\Models\Category;
 use Botble\RealEstate\Models\Investor;
 use Botble\RealEstate\Models\Project;
 use Botble\RealEstate\Supports\RealEstateHelper;
+use Botble\RealEstate\Repositories\Interfaces\ProjectInterface;
 use Botble\Base\Supports\Helper;
 use Illuminate\Http\Request;
+use SlugHelper;
 
 class ProjectController extends Controller
 {
@@ -49,6 +51,34 @@ class ProjectController extends Controller
     public function getProject($id , BaseHttpResponse $response)
     {
         $project = Project::find($id);
+        Helper::handleViewCount($project, 'viewed_project');
+
+        return $response->setData(new ProjectResource($project));
+    }
+
+    public function getProjectBySlug($key , BaseHttpResponse $response, ProjectInterface $projectRepository)
+    {
+        $slug = SlugHelper::getSlug($key, SlugHelper::getPrefix(Project::class));
+
+        // dd($slug,SlugHelper::getPrefix(Project::class));
+        if (! $slug) {
+            abort(404);
+        }
+
+        $helper=new RealEstateHelper();
+        $project = $projectRepository->advancedGet(array_merge([
+            'with' => $helper->getProjectRelationsQuery(),
+            'condition' => ['id' => $slug->reference_id],
+            'take' => 1,
+        ],  $helper->getReviewExtraData()));
+
+        if (! $project) {
+            abort(404);
+        }
+
+        if ($project->slugable->key !== $key) {
+            return redirect()->to($project->url);
+        }
         Helper::handleViewCount($project, 'viewed_project');
 
         return $response->setData(new ProjectResource($project));

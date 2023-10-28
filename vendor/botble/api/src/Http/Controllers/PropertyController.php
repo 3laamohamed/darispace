@@ -90,11 +90,23 @@ class PropertyController extends Controller
         return $response->setData(new PropertyResource($property));
     }
 
-    public function getPropertyBySlug($slug , BaseHttpResponse $response)
+    public function getPropertyBySlug($key , BaseHttpResponse $response,PropertyInterface $propertyRepository)
     {
-        $property = Property::whereHas('slug',function($q) use($slug){
-            $q->where('slug',$slug);
-        })->first();
+        $slug = SlugHelper::getSlug($key, SlugHelper::getPrefix(Property::class));
+        // dd($key);
+        if (! $slug) {
+            abort(404);
+        }
+
+        $property = $propertyRepository->getProperty(
+            $slug->reference_id,
+            RealEstateHelper::getPropertyRelationsQuery(),
+            RealEstateHelper::getReviewExtraData()
+        );
+
+        if (! $property) {
+            abort(404);
+        }
         Helper::handleViewCount($property, 'viewed_property');
         return $response->setData(new PropertyResource($property));
     }
