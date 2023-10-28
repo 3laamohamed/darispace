@@ -62,6 +62,7 @@ Route::group([
     Route::get('properties/featuredProperties','PropertyController@featuredProperties');
     Route::get('properties/recentProperties','PropertyController@recentProperties');
     Route::get('property/{id}','PropertyController@getProperty');
+    Route::get('propertyBySlug/{slug}','PropertyController@getPropertyBySlug');
     Route::get('properties/filter','PropertyController@filterProperties');
     Route::get('properties/getStatuses','PropertyController@getStatuses');
 

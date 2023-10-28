@@ -89,6 +89,16 @@ class PropertyController extends Controller
         Helper::handleViewCount($property, 'viewed_property');
         return $response->setData(new PropertyResource($property));
     }
+
+    public function getPropertyBySlug($slug , BaseHttpResponse $response)
+    {
+        $property = Property::whereHas('slug',function($q) use($slug){
+            $q->where('slug',$slug);
+        })->first();
+        Helper::handleViewCount($property, 'viewed_property');
+        return $response->setData(new PropertyResource($property));
+    }
+
     public function categories(BaseHttpResponse $response)
     {
         $categories=Category::withCount('properties')->get();
