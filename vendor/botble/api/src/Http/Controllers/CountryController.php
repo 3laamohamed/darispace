@@ -76,6 +76,7 @@ class CountryController extends BaseController
 
         $data->prepend(new City(['id' => 0, 'name' => trans('plugins/location::city.select_city')]));
 
+        // dd($data);
         return $response->setData(CityResource::collection($data));
     }
 
