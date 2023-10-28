@@ -16,6 +16,7 @@ class InvestorCardResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'phone' => $this->phone,
             'name' => $this->name,
             'city_name' => $this->name,
             'image' => asset('storage/'.$this->image),
